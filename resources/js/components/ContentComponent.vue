@@ -1,74 +1,16 @@
 <template>
     <mdb-container>
-        <mdb-row>
-            <mdb-col col="sm">
-                <ul>
-                    <li>lorem</li>
-                    <li>lorem</li>
-                    <li>lorem</li>
-                    <li>lorem</li>
-                    <li>lorem</li>
-                    <li>lorem</li>
-                    <li>lorem</li>
-                    <li>lorem</li>
-                    <li>lorem</li>
-                    <li>lorem</li>
-                    <li>lorem</li>
-                    <li>lorem</li>
-                    <li>lorem</li>
-                    <li>lorem</li>
-                    <li>lorem</li>
-                    <li>lorem</li>
-                    <li>lorem</li>
-                    <li>lorem</li>
-                    <li>lorem</li>
-                    <li>lorem</li>
-                    <li>lorem</li>
-                    <li>lorem</li>
-                    <li>lorem</li>
-                    <li>lorem</li>
-                    <li>lorem</li>
-                    <li>lorem</li>
-                    <li>lorem</li>
-                    <li>lorem</li>
-                    <li>lorem</li>
-                    <li>lorem</li>
-                    <li>lorem</li>
-                    <li>lorem</li>
-                    <li>lorem</li>
-                    <li>lorem</li>
-                    <li>lorem</li>
-                    <li>lorem</li>
-                    <li>lorem</li>
-                    <li>lorem</li>
-                    <li>lorem</li>
-                    <li>lorem</li>
-                    <li>lorem</li>
-                    <li>lorem</li>
-                    <li>lorem</li>
-                    <li>lorem</li>
-                    <li>lorem</li>
-                    <li>lorem</li>
-                    <li>lorem</li>
-                    <li>lorem</li>
-                    <li>lorem</li>
-                    <li>lorem</li>
-                    <li>lorem</li>
-                </ul>
-            </mdb-col>
-            <mdb-col col="sm">One of three columns</mdb-col>
-            <mdb-col col="sm">One of three columns</mdb-col>
-        </mdb-row>
+        button
+        <client-add-button-component></client-add-button-component>
+<clients-list-component></clients-list-component>
     </mdb-container>
 </template>
 
 <script>
-import {mdbContainer, mdbRow, mdbCol} from 'mdbvue';
+import {mdbContainer} from 'mdbvue';
 export default {
     components: {
-        mdbContainer,
-        mdbRow,
-        mdbCol
+        mdbContainer
     }
 }
 </script>

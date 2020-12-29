@@ -5,7 +5,7 @@
         </mdb-navbar-brand>
         <mdb-navbar-toggler>
             <mdb-navbar-nav class="flex-column">
-                <mdb-nav-item tag="li" icon="laptop" active href="#">Home</mdb-nav-item>
+                <mdb-nav-item tag="li" icon="laptop" active href="/">Home</mdb-nav-item>
                 <li @click="clickParent('isKlienci')" class="parent" :class="{ active: isKlienci }">
                     <mdb-nav-item tag="a" icon="users" href="/klienci/">Klienci</mdb-nav-item>
                     <ul v-show="isKlienci" class="sub-menu pl-3">

@@ -1,5 +1,5 @@
 <template>
-        <mdb-btn color="default">Dodaj klienta <mdb-icon icon="plus" class="mb-2"/></mdb-btn>
+    <mdb-btn color="default" href="/klienci/nowy">Dodaj klienta <mdb-icon icon="plus" class="mb-2"/></mdb-btn>
 </template>
 
 <script>

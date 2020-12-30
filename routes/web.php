@@ -14,10 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 Route::get('/klienci/', function () {
     return view('klienci');
+});
+Route::get('/klienci/nowy', function () {
+    return view('klienciAdd');
 });
 
 Route::get('/clear-cache', function() {

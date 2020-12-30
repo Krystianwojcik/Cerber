@@ -9,7 +9,7 @@
                 <li @click="clickParent('isKlienci')" class="parent" :class="{ active: isKlienci }">
                     <mdb-nav-item tag="a" icon="users" href="/klienci/">Klienci</mdb-nav-item>
                     <ul v-show="isKlienci" class="sub-menu pl-3">
-                        <mdb-nav-item tag="li" icon="plus" href="/klienci/add/" >Dodaj klienta</mdb-nav-item>
+                        <mdb-nav-item tag="li" icon="plus" href="/klienci/nowy/" >Dodaj klienta</mdb-nav-item>
                         <mdb-nav-item tag="li" icon="users" href="/klienci/" >Wszyscy klienci</mdb-nav-item>
                     </ul>
                 </li>

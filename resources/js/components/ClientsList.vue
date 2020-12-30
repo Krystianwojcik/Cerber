@@ -55,7 +55,7 @@ name: "ClientsList",
                 ssl: 'http',
                 www: 'www.',
                 url: 'rosenes.pl'
-            },
+            }
         ]
     })
 }

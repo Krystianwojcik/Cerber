@@ -1,8 +1,8 @@
 <template>
     <mdb-container>
+<clients-list-component></clients-list-component>
         button
         <client-add-button-component></client-add-button-component>
-<clients-list-component></clients-list-component>
     </mdb-container>
 </template>
 

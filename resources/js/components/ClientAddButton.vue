@@ -2,12 +2,13 @@
         <mdb-btn color="default">Dodaj klienta <mdb-icon icon="plus" class="mb-2"/></mdb-btn>
 </template>
 
-</script>
-import { mdbBtn } from 'mdbvue';
+<script>
+import { mdbBtn, mdbIcon } from 'mdbvue';
 export default {
     name: "ClientAddButton",
     components: {
-        mdbBtn
+        mdbBtn,
+        mdbIcon
     }
 }
 </script>

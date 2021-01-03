@@ -27,6 +27,7 @@ Vue.component('content-component', require('./components/ContentComponent.vue').
 Vue.component('clients-list-component', require('./components/ClientsList.vue').default);
 Vue.component('client-list-single-component', require('./components/ClientListSingle.vue').default);
 Vue.component('client-add-button-component', require('./components/ClientAddButton.vue').default);
+Vue.component('client-form', require('./components/ClientAddNew.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

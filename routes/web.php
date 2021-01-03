@@ -19,7 +19,7 @@ Route::get('/', function () {
 Route::get('/klienci/', function () {
     return view('klienci');
 });
-Route::get('/klienci/nowy', function () {
+Route::get('/klienci/nowy/', function () {
     return view('klienciAdd');
 });
 

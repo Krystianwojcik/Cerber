@@ -15,11 +15,11 @@
         }
     </style>
 </head>
-<body class="antialiased">
+<body class="antialiased pt-5">
 <div id="app">
     <main-menu></main-menu>
     <side-menu></side-menu>
-    <main class="py-">
+    <main class="py-5">
         <div class="container">
             @yield('content')
         </div>

@@ -3,7 +3,7 @@
 @section('title', 'Dodaj Klienta | Cerber')
 
 @section('content')
-    <content-component></content-component>
+    <client-form></client-form>
 @endsection
 
 

@@ -1,5 +1,5 @@
 <template>
-    <mdb-navbar class="sidebar flex-column align-items-start" color="indigo" position="top" dark>
+    <mdb-navbar class="sidebar flex-column align-items-start" dark color="unique-color-dark" position="top">
         <mdb-navbar-brand class="align-items-center" href="/">
             Cerber
         </mdb-navbar-brand>
@@ -7,17 +7,17 @@
             <mdb-navbar-nav class="flex-column">
                 <mdb-nav-item tag="li" icon="laptop" active href="/">Home</mdb-nav-item>
                 <li @click="clickParent('isKlienci')" class="parent" :class="{ active: isKlienci }">
-                    <mdb-nav-item tag="a" icon="users" href="/klienci/">Klienci</mdb-nav-item>
+                    <mdb-nav-item tag="li" icon="users">Klienci</mdb-nav-item>
                     <ul v-show="isKlienci" class="sub-menu pl-3">
                         <mdb-nav-item tag="li" icon="plus" href="/klienci/nowy/" >Dodaj klienta</mdb-nav-item>
                         <mdb-nav-item tag="li" icon="users" href="/klienci/" >Wszyscy klienci</mdb-nav-item>
                     </ul>
                 </li>
                 <li @click="clickParent('isOptymalizacja')" class="parent" :class="{ active: isOptymalizacja }">
-                    <mdb-nav-item tag="a" icon="cog" href="#">Optymalizacja</mdb-nav-item>
+                    <mdb-nav-item tag="li" icon="cog" href="#">Optymalizacja</mdb-nav-item>
                     <ul v-show="isOptymalizacja" class="sub-menu pl-3">
                         <mdb-nav-item tag="li" icon="plus" href="#" >Dodaj optymalizację</mdb-nav-item>
-                        <mdb-nav-item tag="li" icon="cog" href="#" >Wszystkie Optymalizacje</mdb-nav-item>
+                        <mdb-nav-item tag="li" icon="cog" href="/optymalizacje/" >Wszystkie Optymalizacje</mdb-nav-item>
                     </ul>
                 </li>
                 <mdb-nav-item tag="li" icon="file-alt" href="#" >Raporty</mdb-nav-item>
@@ -42,7 +42,7 @@ import {
     mdbNavItem,
     mdbNavbarToggler
 }
-from 'mdbvue';
+    from 'mdbvue';
 export default {
     name: 'Sidebar',
     components: {
@@ -68,10 +68,8 @@ export default {
             } else if(tag == 'isPracownicy') {
                 this.isPracownicy = !this.isPracownicy;
             }
-
         }
     },
-
 }
 </script>
 

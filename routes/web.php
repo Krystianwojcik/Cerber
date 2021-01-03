@@ -22,6 +22,12 @@ Route::get('/klienci/', function () {
 Route::get('/klienci/nowy/', function () {
     return view('klienciAdd');
 });
+Route::get('/optymalizacje/', function () {
+    return view('optimizations');
+});
+Route::get('/optymalizacje/klient/', function () {
+    return view('optimizationKlient');
+});
 
 Route::get('/clear-cache', function() {
     Artisan::call('cache:clear');

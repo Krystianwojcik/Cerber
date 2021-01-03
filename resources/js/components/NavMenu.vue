@@ -1,61 +1,62 @@
 <template>
-    <mdb-navbar color="indigo" position="top" dark>
-        <mdb-navbar-brand href="https://mdbootstrap.com/">
-            Navbar
-        </mdb-navbar-brand>
-        <mdb-navbar-toggler>
-            <mdb-navbar-nav>
-                <mdb-nav-item href="#" active>Home</mdb-nav-item>
-                <mdb-nav-item href="#">Features</mdb-nav-item>
-                <mdb-nav-item href="#">Pricing</mdb-nav-item>
-                <mdb-dropdown tag="li" class="nav-item">
-                    <mdb-dropdown-toggle tag="a" navLink color="indigo" slot="toggle" waves-fixed>Dropdown</mdb-dropdown-toggle>
-                    <mdb-dropdown-menu>
-                        <mdb-dropdown-item>Action</mdb-dropdown-item>
-                        <mdb-dropdown-item>Another action</mdb-dropdown-item>
-                        <mdb-dropdown-item>Something else here</mdb-dropdown-item>
-                    </mdb-dropdown-menu>
-                </mdb-dropdown>
-            </mdb-navbar-nav>
-            <form>
-                <mdb-input type="text" class="text-white" placeholder="Search" aria-label="Search" label navInput waves waves-fixed/>
-            </form>
-        </mdb-navbar-toggler>
-    </mdb-navbar>
+    <div>
+        <mdb-side-nav-2>
+               <mdb-navbar slot="nav" tag="div" :toggler="false" position="top" dark color="unique-color-dark">
+                <mdb-navbar-nav class="nav-flex-icons" right>
+                    <mdb-nav-item tag="li" href="/navigation/pro/double-navigation-v1" waves-fixed icon="code-branch">
+                        <span class="ml-1">v.1</span>
+                    </mdb-nav-item>
+                    <mdb-nav-item tag="li" href="/navigation/pro/double-navigation-v2" waves-fixed icon="eye">
+                        <span class="ml-1">v.2</span>
+                    </mdb-nav-item>
+                    <mdb-nav-item tag="li" href="/navigation/pro/double-navigation-v3" waves-fixed icon="file-code" far>
+                        <span class="ml-1">v.3</span>
+                    </mdb-nav-item>
+                    <mdb-nav-item tag="li" href="/navigation/pro/double-navigation-v4" waves-fixed icon="terminal">
+                        <span class="ml-1">v.4</span>
+                    </mdb-nav-item>
+                    <mdb-nav-item tag="li" active href="/navigation/pro/double-navigation-v5" waves-fixed icon="smile" far>
+                        <span class="ml-1">v.5</span>
+                    </mdb-nav-item>
+                    <mdb-nav-item tag="li" href="/navigation/pro/double-navigation-v6" waves-fixed icon="user" far>
+                        <span class="ml-1">v.6</span>
+                    </mdb-nav-item>
+                </mdb-navbar-nav>
+            </mdb-navbar>
+        </mdb-side-nav-2>
+    </div>
 </template>
 
 <script>
 import {
     mdbNavbar,
-    mdbNavbarBrand,
-    mdbNavbarToggler,
-    mdbNavbarNav,
     mdbNavItem,
-    mdbDropdown,
-    mdbDropdownMenu,
-    mdbDropdownToggle,
-    mdbInput,
-    mdbDropdownItem
-}
-from 'mdbvue';
+    mdbNavbarNav,
+    mdbSideNav2,
+    mdbAvatar,
+    mdbBtn,
+    mdbIcon,
+    mdbNavbarBrand
+} from "mdbvue";
+
 export default {
-    name: 'Navbar',
+    name: "DoubleNavigationPagev1",
     components: {
         mdbNavbar,
-        mdbNavbarBrand,
-        mdbNavbarToggler,
-        mdbNavbarNav,
         mdbNavItem,
-        mdbDropdown,
-        mdbDropdownMenu,
-        mdbDropdownToggle,
-        mdbDropdownItem,
-        mdbInput
-    }
-}
+        mdbNavbarNav,
+        mdbSideNav2,
+        mdbAvatar,
+        mdbBtn,
+        mdbIcon,
+        mdbNavbarBrand
+    },
+};
 </script>
-
-
 <style scoped>
 
+.navbar i {
+    cursor: pointer;
+    color: white;
+}
 </style>

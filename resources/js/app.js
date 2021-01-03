@@ -10,6 +10,7 @@ require("mdbvue/lib/css/mdb.min.css");
 require("@fortawesome/fontawesome-free/css/all.min.css");
 window.Vue = require('vue');
 
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -28,6 +29,10 @@ Vue.component('clients-list-component', require('./components/ClientsList.vue').
 Vue.component('client-list-single-component', require('./components/ClientListSingle.vue').default);
 Vue.component('client-add-button-component', require('./components/ClientAddButton.vue').default);
 Vue.component('client-form', require('./components/ClientAddNew.vue').default);
+Vue.component('clients-optimizations-list-component', require('./components/ClientsOptimizationsList.vue').default);
+Vue.component('client-optimization-component', require('./components/ClientOptimizationSingle.vue').default);
+Vue.component('client-optimization-page-component', require('./components/ClientOptimizationPage.vue').default);
+Vue.component('optimization-check-button-component', require('./components/OptimizationCheckButton.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

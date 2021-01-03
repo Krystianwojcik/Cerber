@@ -8,16 +8,16 @@
         </tr>
         </thead>
         <tbody>
-            <template v-for="client in clients">
-                <client-list-single-component :client="client"/>
-            </template>
+        <template  v-for="client in clients">
+            <client-list-single-component :client="client"/>
+        </template>
         </tbody>
     </table>
 </template>
 
 <script>
 export default {
-name: "ClientsList",
+    name: "ClientsList",
     data: () => ({
         clients:[
             {

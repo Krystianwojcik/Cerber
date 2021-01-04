@@ -4,7 +4,7 @@
         <thead>
         <tr>
             <th scope="col">ID</th>
-            <th scope="col">Adres WWW</th>
+            <th colspace="2" scope="col">Adres WWW</th>
         </tr>
         </thead>
         <tbody>

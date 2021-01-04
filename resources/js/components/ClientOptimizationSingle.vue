@@ -1,41 +1,51 @@
 <template>
-    <table class="table table-hover table-striped">
-        <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-        </tr>
-        </tbody>
-    </table>
+    <tr>
+        <td>{{client.id}}</td>
+        <td>
+            <div class="domain" v-on:click="open()">{{client.ssl}}://{{client.www}}{{client.url}}</div>
+            <div class="content" v-if="client.optimizations && isOpen">
+                <ol>
+                    <li v-for="optimization in client.optimizations"><a href="/optymalizacje/klient/"><strong>{{optimization.kwartal}}</strong>: <em>({{optimization.data}})</em></a></li>
+                </ol>
+            </div>
+
+        </td>
+        <td class="text-right py-2"><mdb-btn color="primary" tag="a" class="icon mx-2" href="/klienci/nowy/"><mdb-icon icon="plus" /></mdb-btn></td>
+    </tr>
 </template>
 
 <script>
+import {mdbIcon, mdbBtn}
+    from "mdbvue";
 export default {
-    name: "ClienPptimizationPage"
+    name: "ClientOptimizationSingle",
+    components: {
+        mdbIcon,
+        mdbBtn
+    },
+    data() {
+        return {
+            isOpen: false
+        };
+    },
+    props:{
+        client: {}
+    },
+    methods: {
+        open: function() {
+            this.isOpen = !this.isOpen;
+        }
+    }
 }
 </script>
 
 <style scoped>
+.icon {
+    height: 30px;
+    width: 30px;
+    padding: 0;
+    line-height: 30px;
+    border-radius: 50%;
+}
 
 </style>

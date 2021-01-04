@@ -2,7 +2,6 @@
     <mdb-row class="justify-content-md-center">
         <mdb-col col="6">
             <div class="card">
-
                 <h1 class="card-header purple-gradient white-text text-center py-4 h4">
                     <strong>Dodaj klienta</strong>
                 </h1>

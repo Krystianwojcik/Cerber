@@ -9,4 +9,9 @@ class Optymization extends Model
 {
     protected $table = 'optymizations';
     use HasFactory;
+
+    public function OptymizationAttribute()
+    {
+        return $this->hasOne(OptymizationsAttributes::class);
+    }
 }

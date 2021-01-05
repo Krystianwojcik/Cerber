@@ -9,4 +9,9 @@ class Client extends Model
 {
     protected $table = 'clients';
     use HasFactory;
+
+    public function optymizationsQuarters()
+    {
+        return $this->hasMany(OptymizationsQuarters::class);
+    }
 }

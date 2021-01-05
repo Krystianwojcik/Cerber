@@ -9,4 +9,9 @@ class OptymizationsQuarters extends Model
 {
     protected $table = 'optymizations_quarters';
     use HasFactory;
+
+    public function optymizations()
+    {
+        return $this->hasMany(Optymization::class);
+    }
 }

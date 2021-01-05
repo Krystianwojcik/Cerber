@@ -7,6 +7,7 @@
     <client-optimization-change-quarter-component></client-optimization-change-quarter-component>
     <client-optimization-page-component></client-optimization-page-component>
     <optimization-check-button-component></optimization-check-button-component>
+    <optimization-add-record-button-component></optimization-add-record-button-component>
 @endsection
 
 

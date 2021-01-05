@@ -28,6 +28,9 @@ Route::get('/optymalizacje/', function () {
 Route::get('/optymalizacje/klient/', function () {
     return view('optimizationKlient');
 });
+Route::get('/optymalizacje/klient/nowy/', function () {
+    return view('optimizationKlientAdd');
+});
 
 Route::get('/clear-cache', function() {
     Artisan::call('cache:clear');

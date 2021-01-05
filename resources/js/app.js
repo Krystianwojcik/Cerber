@@ -33,6 +33,8 @@ Vue.component('client-optimization-component', require('./components/ClientOptim
 Vue.component('client-optimization-page-component', require('./components/ClientOptimizationPage.vue').default);
 Vue.component('optimization-check-button-component', require('./components/OptimizationCheckButton.vue').default);
 Vue.component('client-optimization-change-quarter-component', require('./components/ClientOptimizationChangeQuarter.vue').default);
+Vue.component('optimization-add-record-button-component', require('./components/OptimizationAddRecordButton.vue').default);
+Vue.component('optimization-add-record-component', require('./components/OptimizationAddRecord.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

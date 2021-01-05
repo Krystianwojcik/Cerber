@@ -46,7 +46,6 @@ export default {
                 if(this.groupOptions[step].selected == true)
                     window.location.href = 'http://localhost/optymalizacje/klient/'+this.groupOptions[step].value+'/';
             }
-
         }
     }
 };

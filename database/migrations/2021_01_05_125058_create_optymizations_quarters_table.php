@@ -15,7 +15,8 @@ class CreateOptymizationsQuartersTable extends Migration
     {
         Schema::create('optymizations_quarters', function (Blueprint $table) {
             $table->id();
-            $table->integer('clients_ID');
+            $table->bigInteger('client_id')->unsigned();
+            $table->foreign('client_id')->references('id')->on('clients');
             $table->tinyInteger('quarter');
             $table->date('start_Quarter');
             $table->date('end_Quarter');

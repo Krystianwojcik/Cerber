@@ -15,10 +15,12 @@ class CreateOptymizationsTable extends Migration
     {
         Schema::create('optymizations', function (Blueprint $table) {
             $table->id();
-            $table->integer('quarte_ID');
-            $table->string('full_Url');
-            $table->string('short_Url');
-            $table->integer('attribute_ID');
+            $table->bigInteger('quarte_id')->unsigned();
+            $table->foreign('quarte_id')->references('id')->on('optymizations_quarters');
+            $table->string('full_url');
+            $table->string('short_url');
+            $table->bigInteger('attribute_id')->unsigned();
+            $table->foreign('attribute_id')->references('id')->on('optymization_attributes');
             $table->string('value');
             $table->timestamps();
         });

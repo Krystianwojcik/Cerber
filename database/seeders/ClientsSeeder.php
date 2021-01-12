@@ -25,10 +25,5 @@ class ClientsSeeder extends Seeder
             'www' => false,
             'active' => true,
         ]);
-
-/*        for ($i = 1; $i <= 4; $i++) {
-
-        }
-        $faker = Faker\Factory::create('pl_PL');*/
     }
 }

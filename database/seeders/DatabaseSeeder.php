@@ -15,5 +15,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(ClientsSeeder::class);
         $this->call(OptymizationsQuartesSeeder::class);
+        $this->call(OptymizationsAttributesSeeder::class);
     }
 }

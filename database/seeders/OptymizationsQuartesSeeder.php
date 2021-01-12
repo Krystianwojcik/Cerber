@@ -14,11 +14,21 @@ class OptymizationsQuartesSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('optymizations_quarters')->insert([
-            'clients_ID' => 1,
-            'quarter' => 1,
-            'start_Quarter' => date("Y-m-d H:i:s"),
-            'end_Quarter' => date("Y-m-d H:i:s"),
-        ]);
+        for ($i = 1; $i<=5; $i++) {
+            DB::table('optymizations_quarters')->insert([
+                'client_id' => 1,
+                'quarter' => $i,
+                'start_quarter' => date("Y-m-d H:i:s"),
+                'end_quarter' => date("Y-m-d H:i:s"),
+            ]);
+        }
+        for ($i = 1; $i<=3; $i++) {
+            DB::table('optymizations_quarters')->insert([
+                'client_id' => 2,
+                'quarter' => $i,
+                'start_quarter' => date("Y-m-d H:i:s"),
+                'end_quarter' => date("Y-m-d H:i:s"),
+            ]);
+        }
     }
 }

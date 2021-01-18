@@ -10,6 +10,9 @@ class Client extends Model
     protected $table = 'clients';
     use HasFactory;
     protected $hidden = array('created_at', 'updated_at');
+    protected $fillable = [
+        'domain', 'ssl', 'www', 'active'
+    ];
 
     public function optymizationsQuarters()
     {

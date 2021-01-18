@@ -1,6 +1,7 @@
+
 <template>
     <mdb-row class="justify-content-md-center">
-        <mdb-col col="6">
+        <mdb-col col="8">
             <div class="card">
                 <h1 class="card-header purple-gradient white-text text-center py-4 h4">
                     <strong>Dodaj klienta</strong>
@@ -10,30 +11,27 @@
 
                     <form class="md-form">
                         <div class="col-sm-12">
-                            <mdb-input type="text" label="Domena klienta" icon="globe" small="Podaj samą domenę klienta"
-                                       outline/>
+                                <mdb-input type="text" id="domain-name" name="domain-name"  label="Domena klienta" icon="globe" small="Podaj domenę klienta" v-model="domainName" outline />
                         </div>
                         <mdb-row class="mb-3">
-                            <mdb-col class="form-check" col="6">
-                               <div>
-                                   <mdb-input type="radio" id="domain-ssl" name="domain-ssl" radioValue="domain-ssl"
-                                              v-model="domainSSL" label="SSL"/>
-                                   <mdb-input type="radio" id="domain-no-ssl" name="domain-ssl" radioValue="domain-no-ssl"
-                                              v-model="domainSSL" label="Brak SSL"/>
-                               </div>
+                            <mdb-col class="form-check" col="4">
+                                   <mdb-input type="radio" id="domain-ssl" name="domain-ssl" radioValue="true" v-model="domainSSLon" label="SSL" :checked="domainSSLon == true"/>
+                                   <mdb-input type="radio" id="domain-no-ssl" name="domain-ssl" radioValue="false" v-model="domainSSLoff" label="Brak SSL" :checked="domainSSLoff == false"/>
                             </mdb-col>
-                            <mdb-col class="form-check" col="6">
-                                <div>
-                                    <mdb-input type="radio" id="domain-www" name="domain-www" radioValue="domain-www"
-                                               v-model="domainWWW" label="WWW"/>
-                                    <mdb-input type="radio" id="domain-no-www" name="domain-www" radioValue="domain-no-www"
-                                               v-model="domainWWW" label="Brak WWW"/>
-                                </div>
+                            <mdb-col class="form-check" col="4">
+                                    <mdb-input type="radio" id="domain-www" name="domain-www" radioValue="true"
+                                               v-model="domainWWWon" label="WWW"/>
+                                    <mdb-input type="radio" id="domain-no-www" name="domain-www" radioValue="false"
+                                               v-model="domainWWWoff" label="Brak WWW"/>
+                            </mdb-col>
+                            <mdb-col class="form-check" col="4">
+                                <mdb-input type="checkbox" id="domain-active" name="domain-active" v-model="domainActive" label="Aktywna?" />
                             </mdb-col>
                         </mdb-row>
                         <mdb-row class="justify-content-md-center mt-4">
                             <mdb-btn color="success" class="btn" type="submit">Dodaj klienta</mdb-btn>
                         </mdb-row>
+
                     </form>
                 </div>
             </div>
@@ -54,9 +52,26 @@ export default {
     },
     data() {
         return {
-            domainSSL: '',
-            domainWWW: ''
+            domainSSLon: true,
+            domainSSLoff: true,
+            domainWWWon: '',
+            domainWWWoff: '',
+            domainName: '',
+            domainActive: true
         };
+    },
+    watch: {
+        domainName: function() {
+            const word = 'https';
+            console.log(this.domainName.includes(word));
+            if(this.domainName.includes(word)) {
+                this.domainSSLon = true;
+                this.domainSSLoff = false;
+            } else {
+                this.domainSSLon = false;
+                this.domainSSLoff = true;
+            }
+        }
     }
 };
 </script>

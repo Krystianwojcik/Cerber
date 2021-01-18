@@ -1,6 +1,5 @@
 <template>
     <div>
-        <mdb-side-nav-2>
                <mdb-navbar slot="nav" tag="div" :toggler="false" position="top" dark color="unique-color-dark">
                 <mdb-navbar-nav class="nav-flex-icons" right>
                     <mdb-nav-item tag="li" href="/navigation/pro/double-navigation-v1" waves-fixed icon="code-branch">
@@ -23,7 +22,6 @@
                     </mdb-nav-item>
                 </mdb-navbar-nav>
             </mdb-navbar>
-        </mdb-side-nav-2>
     </div>
 </template>
 

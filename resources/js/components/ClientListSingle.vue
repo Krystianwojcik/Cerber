@@ -1,7 +1,7 @@
 <template>
     <tr>
         <td>{{client.id}}</td>
-        <td>{{client.ssl}}://{{client.www}}{{client.url}}</td>
+        <td>{{hasSSL}}://{{hasWWW}}{{client.domain}}</td>
         <td class="text-right py-1 align-middle"><mdb-btn color="warning" tag="a" class="icon mx-2" href="/klienci/nowy/"><mdb-icon icon="edit" /></mdb-btn><mdb-btn color="danger" class="icon mx-2" v-on:click="deleteClient(client.url)"><mdb-icon icon="trash-alt" /></mdb-btn></td>
     </tr>
 </template>
@@ -22,6 +22,22 @@ export default {
     methods: {
         deleteClient: function(domain) {
             alert("Czy na pewno chcesz usunać domenę "+domain+" ?");
+        }
+    },
+    computed: {
+        hasWWW: function () {
+            if(this.client.www) {
+                return 'www.';
+            } else {
+                return '';
+            }
+        },
+        hasSSL: function () {
+            if(this.client.ssl) {
+                return 'https';
+            } else {
+                return 'http';
+            }
         }
     }
 }

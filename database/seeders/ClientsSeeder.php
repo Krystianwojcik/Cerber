@@ -23,7 +23,7 @@ class ClientsSeeder extends Seeder
         DB::table('clients')->insert([
             'domain' => 'rosenes.pl',
             'ssl' => true,
-            'www' => false,
+            'www' => true,
             'active' => true,
         ]);
     }

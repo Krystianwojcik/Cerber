@@ -9,6 +9,7 @@ class Client extends Model
 {
     protected $table = 'clients';
     use HasFactory;
+    protected $hidden = array('created_at', 'updated_at');
 
     public function optymizationsQuarters()
     {

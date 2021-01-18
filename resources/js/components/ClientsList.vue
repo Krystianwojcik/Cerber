@@ -18,46 +18,23 @@
 <script>
 export default {
 name: "ClientsList",
-    data: () => ({
-        clients:[
-            {
-                id: 1,
-                ssl: 'https',
-                www: '',
-                url: 'aferweb.pl'
-            },
-            {
-                id: 2,
-                ssl: 'http',
-                www: 'www.',
-                url: 'rosenes.pl'
-            },
-            {
-                id: 3,
-                ssl: 'https',
-                www: '',
-                url: 'aferweb.pl'
-            },
-            {
-                id: 4,
-                ssl: 'http',
-                www: 'www.',
-                url: 'rosenes.pl'
-            },
-            {
-                id: 5,
-                ssl: 'https',
-                www: '',
-                url: 'aferweb.pl'
-            },
-            {
-                id: 6,
-                ssl: 'http',
-                www: 'www.',
-                url: 'rosenes.pl'
-            }
-        ]
-    })
+    data() {
+        return {
+            clients: [],
+        }
+    },
+    created() {
+        this.getClients();
+    },
+    methods: {
+        getClients() {
+            console.log('Pobieranie Klientów');
+            axios.get('http://localhost/api/client/').then(response => {
+                this.clients = response.data;
+                console.log('Klienci pobrani');
+            })
+        }
+    }
 }
 
 </script>

@@ -2224,6 +2224,22 @@ __webpack_require__.r(__webpack_exports__);
     deleteClient: function deleteClient(domain) {
       alert("Czy na pewno chcesz usunać domenę " + domain + " ?");
     }
+  },
+  computed: {
+    hasWWW: function hasWWW() {
+      if (this.client.www) {
+        return 'www.';
+      } else {
+        return '';
+      }
+    },
+    hasSSL: function hasSSL() {
+      if (this.client.ssl) {
+        return 'https';
+      } else {
+        return 'http';
+      }
+    }
   }
 });
 
@@ -2362,6 +2378,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ClientOptimizationPage"
 });
@@ -2449,38 +2467,22 @@ __webpack_require__.r(__webpack_exports__);
   name: "ClientsList",
   data: function data() {
     return {
-      clients: [{
-        id: 1,
-        ssl: 'https',
-        www: '',
-        url: 'aferweb.pl'
-      }, {
-        id: 2,
-        ssl: 'http',
-        www: 'www.',
-        url: 'rosenes.pl'
-      }, {
-        id: 3,
-        ssl: 'https',
-        www: '',
-        url: 'aferweb.pl'
-      }, {
-        id: 4,
-        ssl: 'http',
-        www: 'www.',
-        url: 'rosenes.pl'
-      }, {
-        id: 5,
-        ssl: 'https',
-        www: '',
-        url: 'aferweb.pl'
-      }, {
-        id: 6,
-        ssl: 'http',
-        www: 'www.',
-        url: 'rosenes.pl'
-      }]
+      clients: []
     };
+  },
+  created: function created() {
+    this.getClients();
+  },
+  methods: {
+    getClients: function getClients() {
+      var _this = this;
+
+      console.log('Pobieranie Klientów');
+      axios.get('http://localhost/api/client/').then(function (response) {
+        _this.clients = response.data;
+        console.log('Klienci pobrani');
+      });
+    }
   }
 });
 
@@ -2578,8 +2580,6 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var mdbvue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! mdbvue */ "./node_modules/mdbvue/lib/index.js");
 /* harmony import */ var mdbvue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(mdbvue__WEBPACK_IMPORTED_MODULE_0__);
-//
-//
 //
 //
 //
@@ -7356,7 +7356,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.icon[data-v-2aca529c] {\r\n    height: 30px;\r\n    width: 30px;\r\n    padding: 0;\r\n    line-height: 30px;\r\n    border-radius: 50%;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.icon[data-v-2aca529c] {\n    height: 30px;\n    width: 30px;\n    padding: 0;\n    line-height: 30px;\n    border-radius: 50%;\n}\n\n", ""]);
 
 // exports
 
@@ -7394,7 +7394,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.navbar i[data-v-ce029cf2] {\r\n    cursor: pointer;\r\n    color: white;\n}\r\n", ""]);
+exports.push([module.i, "\n.navbar i[data-v-ce029cf2] {\n    cursor: pointer;\n    color: white;\n}\n", ""]);
 
 // exports
 
@@ -39752,10 +39752,10 @@ var render = function() {
     _vm._v(" "),
     _c("td", [
       _vm._v(
-        _vm._s(_vm.client.ssl) +
+        _vm._s(_vm.hasSSL) +
           "://" +
-          _vm._s(_vm.client.www) +
-          _vm._s(_vm.client.url)
+          _vm._s(_vm.hasWWW) +
+          _vm._s(_vm.client.domain)
       )
     ]),
     _vm._v(" "),
@@ -39908,7 +39908,7 @@ var staticRenderFns = [
           _vm._v(" "),
           _c("td", [
             _vm._v(
-              "Wyjątkowe Exploding Box na ślub z autorskich kolekcji firmy Roseness, to wspaniała pamiątka dla Nowożeńców zaprojektowana i wykonana przez najlepszych artystów."
+              "Wyjątkowe Exploding Box na ślub z autorskich kolekcji firmy Roseness, to wspaniała pamiątka dla\n            Nowożeńców zaprojektowana i wykonana przez najlepszych artystów.\n        "
             )
           ])
         ]),
@@ -40156,109 +40156,103 @@ var render = function() {
     "div",
     [
       _c(
-        "mdb-side-nav-2",
+        "mdb-navbar",
+        {
+          attrs: {
+            slot: "nav",
+            tag: "div",
+            toggler: false,
+            position: "top",
+            dark: "",
+            color: "unique-color-dark"
+          },
+          slot: "nav"
+        },
         [
           _c(
-            "mdb-navbar",
-            {
-              attrs: {
-                slot: "nav",
-                tag: "div",
-                toggler: false,
-                position: "top",
-                dark: "",
-                color: "unique-color-dark"
-              },
-              slot: "nav"
-            },
+            "mdb-navbar-nav",
+            { staticClass: "nav-flex-icons", attrs: { right: "" } },
             [
               _c(
-                "mdb-navbar-nav",
-                { staticClass: "nav-flex-icons", attrs: { right: "" } },
-                [
-                  _c(
-                    "mdb-nav-item",
-                    {
-                      attrs: {
-                        tag: "li",
-                        href: "/navigation/pro/double-navigation-v1",
-                        "waves-fixed": "",
-                        icon: "code-branch"
-                      }
-                    },
-                    [_c("span", { staticClass: "ml-1" }, [_vm._v("v.1")])]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "mdb-nav-item",
-                    {
-                      attrs: {
-                        tag: "li",
-                        href: "/navigation/pro/double-navigation-v2",
-                        "waves-fixed": "",
-                        icon: "eye"
-                      }
-                    },
-                    [_c("span", { staticClass: "ml-1" }, [_vm._v("v.2")])]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "mdb-nav-item",
-                    {
-                      attrs: {
-                        tag: "li",
-                        href: "/navigation/pro/double-navigation-v3",
-                        "waves-fixed": "",
-                        icon: "file-code",
-                        far: ""
-                      }
-                    },
-                    [_c("span", { staticClass: "ml-1" }, [_vm._v("v.3")])]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "mdb-nav-item",
-                    {
-                      attrs: {
-                        tag: "li",
-                        href: "/navigation/pro/double-navigation-v4",
-                        "waves-fixed": "",
-                        icon: "terminal"
-                      }
-                    },
-                    [_c("span", { staticClass: "ml-1" }, [_vm._v("v.4")])]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "mdb-nav-item",
-                    {
-                      attrs: {
-                        tag: "li",
-                        active: "",
-                        href: "/navigation/pro/double-navigation-v5",
-                        "waves-fixed": "",
-                        icon: "smile",
-                        far: ""
-                      }
-                    },
-                    [_c("span", { staticClass: "ml-1" }, [_vm._v("v.5")])]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "mdb-nav-item",
-                    {
-                      attrs: {
-                        tag: "li",
-                        href: "/navigation/pro/double-navigation-v6",
-                        "waves-fixed": "",
-                        icon: "user",
-                        far: ""
-                      }
-                    },
-                    [_c("span", { staticClass: "ml-1" }, [_vm._v("v.6")])]
-                  )
-                ],
-                1
+                "mdb-nav-item",
+                {
+                  attrs: {
+                    tag: "li",
+                    href: "/navigation/pro/double-navigation-v1",
+                    "waves-fixed": "",
+                    icon: "code-branch"
+                  }
+                },
+                [_c("span", { staticClass: "ml-1" }, [_vm._v("v.1")])]
+              ),
+              _vm._v(" "),
+              _c(
+                "mdb-nav-item",
+                {
+                  attrs: {
+                    tag: "li",
+                    href: "/navigation/pro/double-navigation-v2",
+                    "waves-fixed": "",
+                    icon: "eye"
+                  }
+                },
+                [_c("span", { staticClass: "ml-1" }, [_vm._v("v.2")])]
+              ),
+              _vm._v(" "),
+              _c(
+                "mdb-nav-item",
+                {
+                  attrs: {
+                    tag: "li",
+                    href: "/navigation/pro/double-navigation-v3",
+                    "waves-fixed": "",
+                    icon: "file-code",
+                    far: ""
+                  }
+                },
+                [_c("span", { staticClass: "ml-1" }, [_vm._v("v.3")])]
+              ),
+              _vm._v(" "),
+              _c(
+                "mdb-nav-item",
+                {
+                  attrs: {
+                    tag: "li",
+                    href: "/navigation/pro/double-navigation-v4",
+                    "waves-fixed": "",
+                    icon: "terminal"
+                  }
+                },
+                [_c("span", { staticClass: "ml-1" }, [_vm._v("v.4")])]
+              ),
+              _vm._v(" "),
+              _c(
+                "mdb-nav-item",
+                {
+                  attrs: {
+                    tag: "li",
+                    active: "",
+                    href: "/navigation/pro/double-navigation-v5",
+                    "waves-fixed": "",
+                    icon: "smile",
+                    far: ""
+                  }
+                },
+                [_c("span", { staticClass: "ml-1" }, [_vm._v("v.5")])]
+              ),
+              _vm._v(" "),
+              _c(
+                "mdb-nav-item",
+                {
+                  attrs: {
+                    tag: "li",
+                    href: "/navigation/pro/double-navigation-v6",
+                    "waves-fixed": "",
+                    icon: "user",
+                    far: ""
+                  }
+                },
+                [_c("span", { staticClass: "ml-1" }, [_vm._v("v.6")])]
               )
             ],
             1

@@ -1,3 +1,4 @@
+<!--
 
 <template>
     <mdb-row class="justify-content-md-center">
@@ -15,14 +16,10 @@
                         </div>
                         <mdb-row class="mb-3">
                             <mdb-col class="form-check" col="4">
-                                   <mdb-input type="radio" id="domain-ssl" name="domain-ssl" radioValue="true" v-model="domainSSLon" label="SSL" :checked="domainSSLon == true"/>
-                                   <mdb-input type="radio" id="domain-no-ssl" name="domain-ssl" radioValue="false" v-model="domainSSLoff" label="Brak SSL" :checked="domainSSLoff == false"/>
+                                <mdb-input type="checkbox" id="domain-ssl" name="domain-ssl" v-model="domainSSL" label="SSL?" />
                             </mdb-col>
                             <mdb-col class="form-check" col="4">
-                                    <mdb-input type="radio" id="domain-www" name="domain-www" radioValue="true"
-                                               v-model="domainWWWon" label="WWW"/>
-                                    <mdb-input type="radio" id="domain-no-www" name="domain-www" radioValue="false"
-                                               v-model="domainWWWoff" label="Brak WWW"/>
+                                <mdb-input type="checkbox" id="domain-www" name="domain-www" v-model="domainWWW" label="WWW?" />
                             </mdb-col>
                             <mdb-col class="form-check" col="4">
                                 <mdb-input type="checkbox" id="domain-active" name="domain-active" v-model="domainActive" label="Aktywna?" />
@@ -52,11 +49,9 @@ export default {
     },
     data() {
         return {
-            domainSSLon: true,
-            domainSSLoff: true,
-            domainWWWon: '',
-            domainWWWoff: '',
             domainName: '',
+            domainSSL: false,
+            domainWWW: 'false',
             domainActive: true
         };
     },
@@ -65,11 +60,9 @@ export default {
             const word = 'https';
             console.log(this.domainName.includes(word));
             if(this.domainName.includes(word)) {
-                this.domainSSLon = true;
-                this.domainSSLoff = false;
+                this.domainSSL = true;
             } else {
-                this.domainSSLon = false;
-                this.domainSSLoff = true;
+                this.domainSSL = false;
             }
         }
     }
@@ -78,3 +71,4 @@ export default {
 <style>
 
 </style>
+-->

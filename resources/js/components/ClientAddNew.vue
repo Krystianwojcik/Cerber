@@ -9,7 +9,7 @@
                 <div class="card-body px-lg-5 py-0">
                     <form class="md-form">
                         <div class="col-sm-12">
-                                <mdb-input type="text" id="domain-name" name="domain-name"  label="Domena klienta" icon="globe" small="Podaj domenę klienta" v-model="domainName" outline />
+                            <mdb-input type="text" id="domain-name" name="domain-name"  label="Domena klienta" icon="globe" small="Podaj domenę klienta" v-model="domainName" outline />
                         </div>
                         <mdb-row class="mb-3">
                             <mdb-col class="form-check" col="4">

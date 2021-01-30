@@ -27,16 +27,16 @@ class ClientController extends Controller
     public function store(Request $request)
     {
         $addClient = Client::create([
-            'domain' => 'test.pl',
-            'ssl' => true,
-            'www' => true,
-            'active' => true
+            'domain' => $request['name'],
+            'ssl' => $request['ssl'],
+            'www' => $request['www'],
+            'active' => $request['active']
         ]);
 
         if ($addClient) {
-            return 'Klient ' . $addClient['domain'] . ' został dodany';
+            return response()->json(['message' => 'Klient ' . $addClient['domain'] . ' został dodany']);
         } else {
-            return 'Klient dodany';
+            return error()->json(['message' => 'Klient nie został dodany']);
         }
 
     }

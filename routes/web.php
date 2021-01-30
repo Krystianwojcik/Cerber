@@ -32,7 +32,7 @@ Route::get('/optymalizacje/klient/nowy/', function () {
     return view('optimizationKlientAdd');
 });
 
-Route::get('/clear-cache', function() {
+Route::get('/clear-cache', function () {
     Artisan::call('cache:clear');
     Artisan::call('route:clear');
     Artisan::call('config:clear');

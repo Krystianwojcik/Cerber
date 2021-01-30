@@ -23,7 +23,7 @@
                             </mdb-col>
                         </mdb-row>
                         <mdb-row class="justify-content-md-center mt-4">
-                            <mdb-btn color="success" class="btn" type="submit">Dodaj klienta</mdb-btn>
+                            <mdb-btn color="success" class="btn" type="button" @click="addClient">Dodaj klienta</mdb-btn>
                         </mdb-row>
                     </form>
                 </div>
@@ -48,6 +48,7 @@ export default {
             domainSSL: false,
             domainWWW: false,
             domainName: '',
+            domainShortName: '',
             domainActive: true
         };
     },
@@ -65,22 +66,34 @@ export default {
             } else {
                 this.domainWWW = false;
             }
+        }
+    },
+    methods: {
+        addClient: function () {
+            this.trimDomain();
+            axios.post('/api/client', {
+                "name": this.domainShortName,
+                "ssl": this.domainSSL,
+                "www": this.domainWWW,
+                "active": this.domainActive
+            }).then(function (response) {
+                this.domainName = "";
+                this.domainSSL = "";
+                this.domainWWW = "";
+                this.domainActive = "";
+                alert(response.data.message);
+            }).catch(function (error) {
+                alert(error.data.message);
+            });
         },
-
-        domainSSL: function () {
-            console.log('zmiana SSL');
+        trimDomain: function () {
             if(this.domainSSL) {
-                this.domainName = this.domainName.replace('http://', 'https://');
+                this.domainShortName = this.domainName.replace('https://', '');
             } else {
-                this.domainName = this.domainName.replace('https://', 'http://');
+                this.domainShortName = this.domainName.replace('http://', '');
             }
-        },
-        domainWWW: function () {
-            console.log('zmiana WWW');
             if(this.domainWWW) {
-                this.domainName = this.domainName.replace('//', '//www.');
-            } else {
-                this.domainName = this.domainName.replace('//www.', '//');
+                this.domainShortName = this.domainName.replace('www.', '');
             }
         }
     }

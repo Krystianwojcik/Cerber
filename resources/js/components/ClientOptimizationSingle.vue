@@ -5,7 +5,7 @@
             <div class="domain" v-on:click="open()">{{client.ssl}}://{{client.www}}{{client.url}}</div>
             <div class="content" v-if="client.optimizations && isOpen">
                 <ol>
-                    <li v-for="optimization in client.optimizations"><a href="/optymalizacje/klient/"><strong>{{optimization.kwartal}}</strong>: <em>({{optimization.data}})</em></a></li>
+                    <li v-for="optimization in client.optimizations"><a v-bind:href="'/optymalizacje/'+ client.url"><strong>{{optimization.kwartal}}</strong>: <em>({{optimization.data}})</em></a></li>
                 </ol>
             </div>
 

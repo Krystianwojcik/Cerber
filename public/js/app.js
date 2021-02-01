@@ -40157,11 +40157,15 @@ var render = function() {
               "ol",
               _vm._l(_vm.client.optimizations, function(optimization) {
                 return _c("li", [
-                  _c("a", { attrs: { href: "/optymalizacje/klient/" } }, [
-                    _c("strong", [_vm._v(_vm._s(optimization.kwartal))]),
-                    _vm._v(": "),
-                    _c("em", [_vm._v("(" + _vm._s(optimization.data) + ")")])
-                  ])
+                  _c(
+                    "a",
+                    { attrs: { href: "/optymalizacje/" + _vm.client.url } },
+                    [
+                      _c("strong", [_vm._v(_vm._s(optimization.kwartal))]),
+                      _vm._v(": "),
+                      _c("em", [_vm._v("(" + _vm._s(optimization.data) + ")")])
+                    ]
+                  )
                 ])
               }),
               0

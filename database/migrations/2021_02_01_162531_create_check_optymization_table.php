@@ -17,6 +17,8 @@ class CreateCheckOptymizationTable extends Migration
             $table->id();
             $table->bigInteger('optymization_id')->unsigned();
             $table->foreign('optymization_id')->references('id')->on('optymizations');
+            $table->boolean('correct');
+            $table->string('value');
             $table->timestamps();
         });
     }

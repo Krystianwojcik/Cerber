@@ -18,6 +18,7 @@ class ClientController extends Controller
         return Client::all();
     }
 
+
     /**
      * Store a newly created resource in storage.
      *
@@ -74,4 +75,10 @@ class ClientController extends Controller
     {
         //
     }
+    public function getClientWithQuarter()
+    {
+        return Client::with('optymizationsQuarters')->get();
+    }
+
+
 }

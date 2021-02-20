@@ -15,6 +15,7 @@ use App\Http\Controllers\API\ClientController;
 |
 */
 Route::apiResource('client', ClientController::class);
+Route::get('getclientwithquarter', [ClientController::class, 'getClientWithQuarter'])->name('getClientWithQuarter');
 
 /*Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

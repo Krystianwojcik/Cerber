@@ -18,6 +18,25 @@
 <script>
 export default {
     name: "ClientsList",
+    data() {
+        return {
+            clients: [],
+        }
+    },
+    created() {
+        this.getClients();
+    },
+    methods: {
+        getClients() {
+            console.log('Pobieranie Klientów');
+            axios.get('http://localhost/api/getclientwithquarter').then(response => {
+                this.clients = response.data;
+                console.log('Klienci pobrani');
+                console.log(this.clients);
+            })
+        }
+    }
+    /*
     data: () => ({
         clients:[
             {
@@ -53,7 +72,7 @@ export default {
                 ]
             }
         ]
-    })
+    })*/
 }
 
 </script>

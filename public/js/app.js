@@ -2482,8 +2482,17 @@ __webpack_require__.r(__webpack_exports__);
     open: function open() {
       this.isOpen = !this.isOpen;
     },
-    kwartalToSlug: function kwartalToSlug(kwartal) {
-      return kwartal.replace(' ', '-').replace('ł', 'l');
+    getWWW: function getWWW(value) {
+      if (value) {
+        return 'https';
+      } else {
+        return 'http';
+      }
+    },
+    getSSL: function getSSL(value) {
+      if (value) {
+        return 'www.';
+      }
     }
   }
 });
@@ -2571,33 +2580,62 @@ __webpack_require__.r(__webpack_exports__);
   name: "ClientsList",
   data: function data() {
     return {
-      clients: [{
-        id: 1,
-        ssl: 'https',
-        www: '',
-        url: 'aferweb.pl',
-        optimizations: [{
-          'kwartal': 'kwartał 1',
-          'data': '01.12.2020'
-        }, {
-          'kwartal': 'kwartał 2',
-          'data': '03.01.2021'
-        }]
-      }, {
-        id: 2,
-        ssl: 'http',
-        www: 'www.',
-        url: 'rosenes.pl',
-        optimizations: [{
-          'kwartal': 'kwartał 2',
-          'data': '03.12.2020'
-        }, {
-          'kwartal': 'kwartał 3',
-          'data': '08.01.2021'
-        }]
-      }]
+      clients: []
     };
+  },
+  created: function created() {
+    this.getClients();
+  },
+  methods: {
+    getClients: function getClients() {
+      var _this = this;
+
+      console.log('Pobieranie Klientów');
+      axios.get('http://localhost/api/getclientwithquarter').then(function (response) {
+        _this.clients = response.data;
+        console.log('Klienci pobrani');
+        console.log(_this.clients);
+      });
+    }
   }
+  /*
+  data: () => ({
+      clients:[
+          {
+              id: 1,
+              ssl: 'https',
+              www: '',
+              url: 'aferweb.pl',
+              optimizations: [
+                  {
+                      'kwartal': 'kwartał 1',
+                      'data': '01.12.2020'
+                  },
+                  {
+                      'kwartal': 'kwartał 2',
+                      'data': '03.01.2021'
+                  }
+              ]
+          },
+          {
+              id: 2,
+              ssl: 'http',
+              www: 'www.',
+              url: 'rosenes.pl',
+              optimizations: [
+                  {
+                      'kwartal': 'kwartał 2',
+                      'data': '03.12.2020'
+                  },
+                  {
+                      'kwartal': 'kwartał 3',
+                      'data': '08.01.2021'
+                  }
+              ]
+          }
+      ]
+  })*/
+
 });
 
 /***/ }),
@@ -40096,19 +40134,19 @@ var render = function() {
         },
         [
           _vm._v(
-            _vm._s(_vm.client.ssl) +
+            _vm._s(_vm.getWWW(_vm.client.ssl)) +
               "://" +
-              _vm._s(_vm.client.www) +
-              _vm._s(_vm.client.url)
+              _vm._s(_vm.getSSL(_vm.client.www)) +
+              _vm._s(_vm.client.domain)
           )
         ]
       ),
       _vm._v(" "),
-      _vm.client.optimizations && _vm.isOpen
+      _vm.client.optymizations_quarters && _vm.isOpen
         ? _c("div", { staticClass: "content" }, [
             _c(
               "ol",
-              _vm._l(_vm.client.optimizations, function(optimization) {
+              _vm._l(_vm.client.optymizations_quarters, function(optimization) {
                 return _c("li", [
                   _c(
                     "a",
@@ -40116,16 +40154,20 @@ var render = function() {
                       attrs: {
                         href:
                           "/optymalizacje/" +
-                          _vm.client.url +
-                          "/" +
-                          _vm.kwartalToSlug(optimization.kwartal) +
+                          _vm.client.domain +
+                          "/kwartal-" +
+                          optimization.quarter +
                           "/"
                       }
                     },
                     [
-                      _c("strong", [_vm._v(_vm._s(optimization.kwartal))]),
+                      _c("strong", [
+                        _vm._v("kwartał " + _vm._s(optimization.quarter))
+                      ]),
                       _vm._v(": "),
-                      _c("em", [_vm._v("(" + _vm._s(optimization.data) + ")")])
+                      _c("em", [
+                        _vm._v("(" + _vm._s(optimization.start_Quarter) + ")")
+                      ])
                     ]
                   )
                 ])

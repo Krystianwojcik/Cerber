@@ -2,11 +2,11 @@
     <tr>
         <td>{{client.id}}</td>
         <td>
-            <div class="domain" v-on:click="open()">{{client.ssl}}://{{client.www}}{{client.url}}</div>
-            <div class="content" v-if="client.optimizations && isOpen">
+            <div class="domain" v-on:click="open()">{{getWWW(client.ssl)}}://{{getSSL(client.www)}}{{client.domain}}</div>
+            <div class="content" v-if="client.optymizations_quarters && isOpen">
                 <ol>
-                    <li v-for="optimization in client.optimizations">
-                        <a v-bind:href="'/optymalizacje/'+ client.url +'/'+ kwartalToSlug(optimization.kwartal) +'/' "><strong>{{optimization.kwartal}}</strong>: <em>({{optimization.data}})</em></a>
+                    <li v-for="optimization in client.optymizations_quarters">
+                        <a v-bind:href="'/optymalizacje/'+ client.domain +'/kwartal-'+ optimization.quarter +'/' "><strong>kwartał {{optimization.quarter}}</strong>: <em>({{optimization.start_Quarter}})</em></a>
                     </li>
                 </ol>
             </div>
@@ -27,7 +27,6 @@ export default {
     data() {
         return {
             isOpen: false
-
         };
     },
     props:{
@@ -37,8 +36,17 @@ export default {
         open: function() {
             this.isOpen = !this.isOpen;
         },
-        kwartalToSlug: function (kwartal) {
-            return kwartal.replace(' ', '-').replace('ł', 'l');
+        getWWW: function (value) {
+            if(value) {
+                return 'https';
+            } else {
+                return 'http';
+            }
+        },
+        getSSL: function (value) {
+            if(value) {
+                return 'www.';
+            }
         }
     }
 

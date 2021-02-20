@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,6 +32,9 @@ Route::get('/optymalizacje/klient/nowy/', function () {
     return view('optimizationKlientAdd');
 });
 
+Route::get('', [App\Http\Controllers\HomeController::class, 'getClientWithQuarter']);
+
+
 Route::get('/clear-cache', function () {
     Artisan::call('cache:clear');
     Artisan::call('route:clear');
@@ -42,4 +45,4 @@ Route::get('/clear-cache', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'getClientWithQuarter'])->name('home');

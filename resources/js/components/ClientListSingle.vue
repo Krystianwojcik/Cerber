@@ -1,14 +1,22 @@
 <template>
     <tr>
-        <td>{{client.id}}</td>
-        <td>{{hasSSL}}://{{hasWWW}}{{client.domain}}</td>
-        <td class="text-right py-1 align-middle"><mdb-btn color="warning" tag="a" class="icon mx-2" href="/klienci/nowy/"><mdb-icon icon="edit" /></mdb-btn><mdb-btn color="danger" class="icon mx-2" v-on:click="deleteClient(client.url)"><mdb-icon icon="trash-alt" /></mdb-btn></td>
+        <td>{{ client.id }}</td>
+        <td>{{ hasSSL }}://{{ hasWWW }}{{ client.domain }}</td>
+        <td class="text-right py-1 align-middle">
+            <mdb-btn color="warning" tag="a" class="icon mx-2" href="/klienci/nowy/">
+                <mdb-icon icon="edit"/>
+            </mdb-btn>
+            <mdb-btn color="danger" class="icon mx-2" v-on:click="deleteClient(client.url)">
+                <mdb-icon icon="trash-alt"/>
+            </mdb-btn>
+        </td>
     </tr>
 </template>
 
 <script>
 import {mdbIcon, mdbBtn}
-from "mdbvue";
+    from "mdbvue";
+
 export default {
     name: "ClientListSingle",
     components: {
@@ -16,24 +24,24 @@ export default {
         mdbBtn
 
     },
-    props:{
+    props: {
         client: {}
     },
     methods: {
-        deleteClient: function(domain) {
-            alert("Czy na pewno chcesz usunać domenę "+domain+" ?");
+        deleteClient: function (domain) {
+            alert("Czy na pewno chcesz usunać domenę " + domain + " ?");
         }
     },
     computed: {
         hasWWW: function () {
-            if(this.client.www) {
+            if (this.client.www) {
                 return 'www.';
             } else {
                 return '';
             }
         },
         hasSSL: function () {
-            if(this.client.ssl) {
+            if (this.client.ssl) {
                 return 'https';
             } else {
                 return 'http';

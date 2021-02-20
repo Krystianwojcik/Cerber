@@ -5,10 +5,11 @@
             <div class="domain" v-on:click="open()">{{client.ssl}}://{{client.www}}{{client.url}}</div>
             <div class="content" v-if="client.optimizations && isOpen">
                 <ol>
-                    <li v-for="optimization in client.optimizations"><a v-bind:href="'/optymalizacje/'+ client.url"><strong>{{optimization.kwartal}}</strong>: <em>({{optimization.data}})</em></a></li>
+                    <li v-for="optimization in client.optimizations">
+                        <a v-bind:href="'/optymalizacje/'+ client.url +'/'+ kwartalToSlug(optimization.kwartal) +'/' "><strong>{{optimization.kwartal}}</strong>: <em>({{optimization.data}})</em></a>
+                    </li>
                 </ol>
             </div>
-
         </td>
         <td class="text-right py-2"><mdb-btn color="primary" tag="a" class="icon mx-2" href="/klienci/nowy/"><mdb-icon icon="plus" /></mdb-btn></td>
     </tr>
@@ -26,6 +27,7 @@ export default {
     data() {
         return {
             isOpen: false
+
         };
     },
     props:{
@@ -34,8 +36,12 @@ export default {
     methods: {
         open: function() {
             this.isOpen = !this.isOpen;
+        },
+        kwartalToSlug: function (kwartal) {
+            return kwartal.replace(' ', '-').replace('ł', 'l');
         }
     }
+
 }
 </script>
 

@@ -51,30 +51,6 @@ export default {
                         'data': '08.01.2021'
                     }
                 ]
-            },
-            {
-                id: 3,
-                ssl: 'https',
-                www: '',
-                url: 'aferweb.pl'
-            },
-            {
-                id: 4,
-                ssl: 'http',
-                www: 'www.',
-                url: 'rosenes.pl'
-            },
-            {
-                id: 5,
-                ssl: 'https',
-                www: '',
-                url: 'aferweb.pl'
-            },
-            {
-                id: 6,
-                ssl: 'http',
-                www: 'www.',
-                url: 'rosenes.pl'
             }
         ]
     })

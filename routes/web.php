@@ -25,15 +25,15 @@ Route::get('/klienci/nowy/', function () {
 Route::get('/optymalizacje/', function () {
     return view('optimizations');
 });
-Route::get('/optymalizacje/klient/', function () {
+/*Route::get('/optymalizacje/klient/', function () {
     return view('optimizationKlient');
-});
+});*/
+
+Route::get('/optymalizacje/{client}/kwartal-{quarter}', [App\Http\Controllers\HomeController::class, 'optimization'])->name('optimization');
+
 Route::get('/optymalizacje/klient/nowy/', function () {
     return view('optimizationKlientAdd');
 });
-
-Route::get('', [App\Http\Controllers\HomeController::class, 'getClientWithQuarter']);
-
 
 Route::get('/clear-cache', function () {
     Artisan::call('cache:clear');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Models\Optymization;
 use Illuminate\Http\Request;
 use App\Repository\Repository;
 use App\Gateway\Gateway;
@@ -32,4 +33,10 @@ class HomeController extends Controller
         echo $this->R->test();
         //return view('home');
     }
+    public function optimization($client, $quarter)
+    {
+/*        dd($quarter);*/
+        return view('optimizationKlient', [/*'client' => $client, */'quarter' => $quarter]);
+    }
+
 }

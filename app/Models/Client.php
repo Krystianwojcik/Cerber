@@ -13,7 +13,6 @@ class Client extends Model
     protected $fillable = [
         'domain', 'ssl', 'www', 'active'
     ];
-
     public function optymizationsQuarters()
     {
         return $this->hasMany(OptymizationsQuarters::class);

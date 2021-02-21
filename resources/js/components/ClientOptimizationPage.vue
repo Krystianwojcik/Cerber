@@ -10,37 +10,13 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <th scope="row">1</th>
+        <tr  v-for="optymization in optymizations">
+            <th scope="row">{{optymization.id}}</th>
             <td>https://roseness.pl/</td>
-            <td>/</td>
-            <td>Title</td>
-            <td>Roseness Exploding Box, Ręcznie robione pudełka Na Ślub</td>
+            <td>{{optymization.short_url}}</td>
+            <td>{{optymization.optymization_attribute.attribute}}</td>
+            <td>{{optymization.value}}</td>
         </tr>
-        <tr>
-            <th scope="row">1</th>
-            <td>https://roseness.pl/</td>
-            <td>/</td>
-            <td>description</td>
-            <td>Wyjątkowe Exploding Box na ślub z autorskich kolekcji firmy Roseness, to wspaniała pamiątka dla
-                Nowożeńców zaprojektowana i wykonana przez najlepszych artystów.
-            </td>
-        </tr>
-        <tr>
-            <th scope="row">1</th>
-            <td>https://roseness.pl/exploding-box/</td>
-            <td>/exploding-box/</td>
-            <td>H1</td>
-            <td>Sklep</td>
-        </tr>
-        <tr>
-            <th scope="row">1</th>
-            <td>https://roseness.pl/exploding-box/</td>
-            <td>/exploding-box/</td>
-            <td>301</td>
-            <td>http://roseness.pl/exploding-box/</td>
-        </tr>
-
 
         </tbody>
     </table>
@@ -49,8 +25,27 @@
 
 <script>
 export default {
-    name: "ClientOptimizationPage"
-
+    name: "ClientsList",
+    data() {
+        return {
+            optymizations: [],
+        }
+    },
+    props:{
+        quarter: ''
+    },
+    created() {
+        this.getClients();
+    },
+    methods: {
+        getClients() {
+            console.log('Optymalizacje pobranie');
+            axios.get('http://localhost/api/getoptymizations?quarter='+this.quarter).then(response => {
+                this.optymizations = response.data;
+                console.log('Optymalizacje pobrane');
+            })
+        }
+    }
 }
 </script>
 

@@ -2423,6 +2423,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       console.log('Optymalizacje pobranie');
+      console.log('http://localhost/api/getoptymizations?quarter=' + this.quarter);
       axios.get('http://localhost/api/getoptymizations?quarter=' + this.quarter).then(function (response) {
         _this.optymizations = response.data;
         console.log('Optymalizacje pobrane');
@@ -2697,6 +2698,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "OptimizationAddRecord",
@@ -2709,20 +2714,71 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      basicOptions: [{
+      attribute: [{
         text: "Title",
-        value: "title"
+        value: "1"
       }, {
         text: "Meta description",
-        value: "meta-description"
+        value: "2"
       }, {
         text: "Nagłówek H1",
-        value: "naglowek-h1"
+        value: "3"
       }, {
         text: "Przekierowanie 301",
-        value: "redirect-301"
-      }]
+        value: "4"
+      }],
+      domain: [{
+        text: "afterweb.pl",
+        value: "1"
+      }, {
+        text: "roseness.pl",
+        value: "2"
+      }],
+      short_url: '',
+      value: '',
+      attribute_value: '',
+      domain_value: ''
     };
+  },
+  watch: {
+    attribute: function attribute() {
+      this.attribute_value = this.attribute.filter(function (elem) {
+        if (elem.selected) {
+          return elem.value;
+        }
+      });
+
+      if (this.attribute_value.length > 0) {
+        this.attribute_value = this.attribute_value[0].value;
+      }
+    },
+    domain: function domain() {
+      this.domain_value = this.domain.filter(function (elem) {
+        if (elem.selected) {
+          return elem.value;
+        }
+      });
+
+      if (this.domain_value.length > 0) {
+        this.domain_value = this.domain_value[0].value;
+      }
+
+      console.log(this.domain_value);
+    }
+  },
+  methods: {
+    addOptymization: function addOptymization() {
+      axios.post('/api/optymization', {
+        "domain": this.domain_value,
+        "short_url": this.short_url,
+        "attribute_id": this.attribute_value,
+        "value": this.value
+      }).then(function (response) {
+        alert(response.data.message);
+      })["catch"](function (error) {
+        alert(error.data.message);
+      });
+    }
   }
 });
 
@@ -40449,13 +40505,38 @@ var render = function() {
                   "div",
                   { staticClass: "col-sm-12" },
                   [
+                    _c("mdb-select", {
+                      attrs: { placeholder: "Wybierz domenę", label: "" },
+                      model: {
+                        value: _vm.domain,
+                        callback: function($$v) {
+                          _vm.domain = $$v
+                        },
+                        expression: "domain"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "col-sm-12" },
+                  [
                     _c("mdb-input", {
                       attrs: {
                         type: "text",
                         label: "Adres strony WWW",
                         icon: "globe",
-                        small: "Podaj adres na który który ma być sprawdzany",
+                        small: "Podaj katalog który ma być sprawdzany",
                         outline: ""
+                      },
+                      model: {
+                        value: _vm.short_url,
+                        callback: function($$v) {
+                          _vm.short_url = $$v
+                        },
+                        expression: "short_url"
                       }
                     })
                   ],
@@ -40469,11 +40550,11 @@ var render = function() {
                     _c("mdb-select", {
                       attrs: { placeholder: "Wybierz atrybut", label: "" },
                       model: {
-                        value: _vm.basicOptions,
+                        value: _vm.attribute,
                         callback: function($$v) {
-                          _vm.basicOptions = $$v
+                          _vm.attribute = $$v
                         },
-                        expression: "basicOptions"
+                        expression: "attribute"
                       }
                     })
                   ],
@@ -40491,6 +40572,13 @@ var render = function() {
                         icon: "check-circle",
                         small: "To wpisz ciąg znaków jaki ma być szukany",
                         outline: ""
+                      },
+                      model: {
+                        value: _vm.value,
+                        callback: function($$v) {
+                          _vm.value = $$v
+                        },
+                        expression: "value"
                       }
                     })
                   ],
@@ -40505,7 +40593,8 @@ var render = function() {
                       "mdb-btn",
                       {
                         staticClass: "btn",
-                        attrs: { color: "success", type: "submit" }
+                        attrs: { color: "success", type: "button" },
+                        on: { click: _vm.addOptymization }
                       },
                       [_vm._v("Dodaj dane")]
                     )

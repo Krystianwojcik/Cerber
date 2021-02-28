@@ -28,7 +28,7 @@ class OptymizationsSeeder extends Seeder
         ]);
         DB::table('optymizations')->insert([
             'quarte_id' => 7,
-            'short_url' => '/exploding-box/	',
+            'short_url' => '/exploding-box/',
             'attribute_id' => 3,
             'value' => 'Sklep',
         ]);

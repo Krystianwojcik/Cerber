@@ -16,6 +16,7 @@ use App\Http\Controllers\API\OptymizationController;
 |
 */
 Route::apiResource('client', ClientController::class);
+Route::apiResource('optymization', OptymizationController::class);
 Route::get('getclientwithquarter', [ClientController::class, 'getClientWithQuarter'])->name('getClientWithQuarter');
 Route::get('getoptymizations', [OptymizationController::class, 'getOptymizations'])->name('getOptymizations');
 

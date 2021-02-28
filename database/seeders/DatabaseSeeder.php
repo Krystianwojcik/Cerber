@@ -22,5 +22,6 @@ class DatabaseSeeder extends Seeder
         $this->call(CheckOptymizationsSeeder::class);
         $this->call(ClientOptymizationsSeeder::class);
         $this->call(UserProjectSeeder::class);
+        $this->call(ClientsOptymizationsSeeder::class);
     }
 }

@@ -25,9 +25,12 @@ Route::get('/klienci/nowy/', function () {
 Route::get('/optymalizacje/', function () {
     return view('optimizations');
 });
-/*Route::get('/optymalizacje/klient/', function () {
-    return view('optimizationKlient');
-});*/
+
+Route::get('/optymalizacje/get-title/', [App\Http\Controllers\CheckOptymization::class, 'getTitle']);
+Route::get('/optymalizacje/get-description/', [App\Http\Controllers\CheckOptymization::class, 'getDescription']);
+
+Route::get('/get-website/', [App\Http\Controllers\CheckOptymization::class, 'getWebsite']);
+
 
 Route::get('/optymalizacje/{client}/kwartal-{quarter}', [App\Http\Controllers\HomeController::class, 'optimization'])->name('optimization');
 

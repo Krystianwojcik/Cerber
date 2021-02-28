@@ -31,7 +31,7 @@ Vue.component('client-form', require('./components/ClientAddNew.vue').default);
 Vue.component('clients-optimizations-list-component', require('./components/ClientsOptimizationsList.vue').default);
 Vue.component('client-optimization-component', require('./components/ClientOptimizationSingle.vue').default);
 Vue.component('client-optimization-page-component', require('./components/ClientOptimizationPage.vue').default);
-Vue.component('optimization-check-button-component', require('./components/OptimizationCheckButton.vue').default);
+Vue.component('check-button-optimization-component', require('./components/CheckButtonOptimization.vue').default);
 Vue.component('client-optimization-change-quarter-component', require('./components/ClientOptimizationChangeQuarter.vue').default);
 Vue.component('optimization-add-record-button-component', require('./components/OptimizationAddRecordButton.vue').default);
 Vue.component('optimization-add-record-component', require('./components/OptimizationAddRecord.vue').default);

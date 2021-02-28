@@ -19,6 +19,7 @@ Route::apiResource('client', ClientController::class);
 Route::apiResource('optymization', OptymizationController::class);
 Route::get('getclientwithquarter', [ClientController::class, 'getClientWithQuarter'])->name('getClientWithQuarter');
 Route::get('getoptymizations', [OptymizationController::class, 'getOptymizations'])->name('getOptymizations');
+Route::post('add-optymization-to-order', [App\Http\Controllers\CheckOptymizationController::class, 'addOptymizationToOrder'])->name('addOptymizationToOrder');
 
 /*Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

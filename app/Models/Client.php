@@ -17,4 +17,8 @@ class Client extends Model
     {
         return $this->hasMany(OptymizationsQuarters::class);
     }
+    public function optymalizations()
+    {
+        return $this->hasMany(Optymization::class);
+    }
 }

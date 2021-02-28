@@ -26,10 +26,12 @@ Route::get('/optymalizacje/', function () {
     return view('optimizations');
 });
 
-Route::get('/optymalizacje/get-title/', [App\Http\Controllers\CheckOptymization::class, 'getTitle']);
-Route::get('/optymalizacje/get-description/', [App\Http\Controllers\CheckOptymization::class, 'getDescription']);
+Route::get('/optymalizacje/get-title/', [App\Http\Controllers\CheckOptymizationController::class, 'getTitle']);
+Route::get('/optymalizacje/get-description/', [App\Http\Controllers\CheckOptymizationController::class, 'getDescription']);
 
-Route::get('/get-website/', [App\Http\Controllers\CheckOptymization::class, 'getWebsite']);
+Route::get('/get-title/', [App\Http\Controllers\CheckOptymizationController::class, 'getTitleJob']);
+Route::get('/get-desc/', [App\Http\Controllers\CheckOptymizationController::class, 'getDescJob']);
+Route::get('/get-h1/', [App\Http\Controllers\CheckOptymizationController::class, 'GetH1Job']);
 
 
 Route::get('/optymalizacje/{client}/kwartal-{quarter}', [App\Http\Controllers\HomeController::class, 'optimization'])->name('optimization');

@@ -31,11 +31,6 @@ class GetWebsite implements ShouldQueue
      */
     public function handle()
     {
-        Client::create([
-            'domain' => 'test3',
-            'ssl' => 1,
-            'www' => 1,
-            'active' => 1
-        ]);
+
     }
 }

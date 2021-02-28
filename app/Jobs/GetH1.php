@@ -3,8 +3,8 @@
 namespace App\Jobs;
 
 use App\Models\CheckOptymization;
-use App\Models\Optymization;
 use App\Models\Client;
+use App\Models\Optymization;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -12,7 +12,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class GetTitle implements ShouldQueue
+class GetH1 implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -51,7 +51,7 @@ class GetTitle implements ShouldQueue
         $url .= $optymization->short_url;
 
         $page = file_get_contents($url);
-        $value = preg_match('/<title[^>]*>(.*?)<\/title>/ims', $page, $match) ? $match[1] : null;
+        $value = preg_match('/<h1[^>]*>(.*?)<\/h1>/ims', $page, $match) ? $match[1] : null;
 
         if($optymization->value == $value) {
             $correct = 1;

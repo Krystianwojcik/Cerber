@@ -3,7 +3,7 @@
 @section('title', 'Dodaj Klienta | Cerber')
 
 @section('content')
-    <client-form  :client="{{$client}}  :quarter="{{$quarter}}></client-form>
+    <client-form  @if(isset($client)) :client="{{$client}}"  :quarter="{{$quarter}}" @endif></client-form>
 @endsection
 
 

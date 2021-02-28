@@ -16,12 +16,13 @@ use App\Http\Controllers\HomeController;
 Route::get('/', function () {
     return view('home');
 });
-Route::get('/klienci/', function () {
+/*Route::get('/klienci/', function () {
     return view('klienci');
-});
-Route::get('/klienci/nowy/', function () {
-    return view('klienciAdd');
-});
+});*/
+Route::resource('klienci', App\Http\Controllers\KlienciController::class);
+//Route::get('/klienci/nowy/', function () {
+//    return view('klienciAdd');
+//});
 Route::get('/optymalizacje/', function () {
     return view('optimizations');
 });

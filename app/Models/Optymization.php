@@ -11,7 +11,7 @@ class Optymization extends Model
     use HasFactory;
     protected $hidden = array('created_at', 'updated_at');
     protected $fillable = [
-        'short_url', 'attribute_id', 'value'
+        'quarte_id', 'short_url', 'attribute_id', 'value'
     ];
     public function OptymizationAttribute()
     {

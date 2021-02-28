@@ -3,7 +3,9 @@
 @section('title', 'Dodaj Klienta | Cerber')
 
 @section('content')
-    <client-form></client-form>
+    {{$client}}
+    {{$quarter}}
+    <client-form  :client="{{$client}}  :quarter="{{$quarter}}></client-form>
 @endsection
 
 

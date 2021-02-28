@@ -31,9 +31,7 @@ Route::get('/optymalizacje/', function () {
 
 Route::get('/optymalizacje/{client}/kwartal-{quarter}', [App\Http\Controllers\HomeController::class, 'optimization'])->name('optimization');
 
-Route::get('/optymalizacje/klient/nowy/', function () {
-    return view('optimizationKlientAdd');
-});
+Route::get('/optymalizacje/klient/nowy/', [App\Http\Controllers\HomeController::class, 'addOptimization'])->name('addOptimization');
 
 Route::get('/clear-cache', function () {
     Artisan::call('cache:clear');

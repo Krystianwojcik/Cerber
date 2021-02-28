@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Optymization;
+use App\Models\OptymizationsQuarters;
 use Illuminate\Http\Request;
 
 class OptymizationController extends Controller
@@ -36,7 +37,21 @@ class OptymizationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $currentQuarte = OptymizationsQuarters::where("client_id", 2)->latest('created_at')->first();
+
+
+        $addOptymization = Optymization::create([
+            'quarte_id' => $currentQuarte->id,
+            'short_url' => $request['short_url'],
+            'attribute_id' => $request['attribute_id'],
+            'value' => $request['value']
+        ]);
+
+        if ($addOptymization) {
+            return response()->json(['message' => 'Optymalizacja został dodany']);
+        } else {
+            return error()->json(['message' => 'Optymalizacja nie został dodany']);
+        }
     }
 
     /**

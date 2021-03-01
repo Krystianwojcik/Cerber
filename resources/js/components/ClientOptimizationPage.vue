@@ -40,8 +40,8 @@ export default {
     methods: {
         getClients() {
             console.log('Optymalizacje pobranie');
-            console.log('http://localhost/api/getoptymizations?quarter='+this.quarter);
-            axios.get('http://localhost/api/getoptymizations?quarter='+this.quarter).
+            console.log('/api/getoptymizations?quarter='+this.quarter);
+            axios.get('/api/getoptymizations?quarter='+this.quarter).
             then(response => {
                 this.optymizations = response.data;
                 console.log('Optymalizacje pobrane');

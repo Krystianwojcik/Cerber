@@ -2446,8 +2446,8 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       console.log('Optymalizacje pobranie');
-      console.log('http://localhost/api/getoptymizations?quarter=' + this.quarter);
-      axios.get('http://localhost/api/getoptymizations?quarter=' + this.quarter).then(function (response) {
+      console.log('/api/getoptymizations?quarter=' + this.quarter);
+      axios.get('/api/getoptymizations?quarter=' + this.quarter).then(function (response) {
         _this.optymizations = response.data;
         console.log('Optymalizacje pobrane');
       });
@@ -2622,7 +2622,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       console.log('Pobieranie Klientów');
-      axios.get('http://localhost/api/client/').then(function (response) {
+      axios.get('/api/client/').then(function (response) {
         _this.clients = response.data;
         console.log('Klienci pobrani');
       });
@@ -2673,7 +2673,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       console.log('Pobieranie Klientów');
-      axios.get('http://localhost/api/getclientwithquarter').then(function (response) {
+      axios.get('/api/getclientwithquarter').then(function (response) {
         _this.clients = response.data;
         console.log('Klienci pobrani');
         console.log(_this.clients);

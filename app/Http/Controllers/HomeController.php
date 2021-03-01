@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Models\ClientsRaports;
 use App\Models\Optymization;
 use App\Models\OptymizationsQuarters;
+use App\Models\CheckOptymization;
 use Illuminate\Http\Request;
 use App\Repository\Repository;
 use App\Gateway\Gateway;
@@ -38,12 +40,26 @@ class HomeController extends Controller
     {
         $clientID = Client::where('domain', $client)->first();
         $return = OptymizationsQuarters::where('client_id', $clientID->id)->where('quarter', $quarter)->first();
-        return view('optimizationKlient', ['quarter' => $return->id]);
+        return view('optimizationKlient', ['quarter' => $return->id], ['client' => $clientID->id]);
     }
     public function addOptimization()
     {
 //        dd($client);
         return view('optimizationKlientAdd');
     }
+
+    public function raporty()
+    {
+        $clients = Client::with('clientHasRaport')->get();
+        return view('raports', ['clients' => $clients]);
+    }
+    public function raport($client)
+    {
+        $clientID = Client::where('domain', $client)->first();
+        $raport = ClientsRaports::where('client_id', $clientID->id)->first()->with('raport')->with('raportInfo')->get();
+        return view('raport', ['raport' => $raport]);
+    }
+
+
 
 }

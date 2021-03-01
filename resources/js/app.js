@@ -35,6 +35,9 @@ Vue.component('check-button-optimization-component', require('./components/Check
 Vue.component('client-optimization-change-quarter-component', require('./components/ClientOptimizationChangeQuarter.vue').default);
 Vue.component('optimization-add-record-button-component', require('./components/OptimizationAddRecordButton.vue').default);
 Vue.component('optimization-add-record-component', require('./components/OptimizationAddRecord.vue').default);
+Vue.component('clients-raports-list-component', require('./components/ClientsRaportsList.vue').default);
+Vue.component('client-report-component', require('./components/ClientRaportSingle.vue').default);
+Vue.component('raport-component', require('./components/Raport.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

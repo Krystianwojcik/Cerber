@@ -20,7 +20,7 @@
                         <mdb-nav-item tag="li" icon="cog" href="/optymalizacje/" >Wszystkie Optymalizacje</mdb-nav-item>
                     </ul>
                 </li>
-                <mdb-nav-item tag="li" icon="file-alt" href="#" >Raporty</mdb-nav-item>
+                <mdb-nav-item tag="li" icon="file-alt" href="/raporty/" >Raporty</mdb-nav-item>
                 <mdb-nav-item tag="li" icon="ellipsis-h" href="#" >Kolejki</mdb-nav-item>
                 <li class="parent" :class="{ active: isPracownicy }">
                     <mdb-nav-item tag="a" icon="users-cog" @click="clickParent('isPracownicy')">Pracownicy <mdb-icon class="icon" icon="angle-down" /></mdb-nav-item>

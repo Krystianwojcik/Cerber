@@ -1,52 +1,48 @@
 <template>
     <mdb-row>
-        <mdb-col col="3"><mdb-select v-model="groupOptions" label="Wybierz kwartał" /></mdb-col>{{out}}
+        <mdb-btn-group>
+            <template v-for="quarterSingle in clientQuarters" >
+                <mdb-btn color="info" size="sm" @click="changeQuarte(quarterSingle.quarter)">Kwartał {{ quarterSingle.quarter }}</mdb-btn>
+            </template>
+        </mdb-btn-group>
     </mdb-row>
 </template>
 
 <script>
-import { mdbSelect, mdbRow, mdbCol } from "mdbvue";
+import { mdbBtn, mdbBtnGroup, mdbRow, mdbCol } from "mdbvue";
 export default {
     name: "ClientOptimizationChangeQuarter.vue",
     components: {
-        mdbSelect,
+        mdbBtn,
+        mdbBtnGroup,
         mdbRow,
         mdbCol
     },
     data() {
         return {
-            groupOptions: [
-                {
-                    text: "1 rok",
-                    value: null,
-                    disabled: true,
-                    optgroup: true
-                },
-                { text: "Kwartał 1", value: "kwartal-1" },
-                { text: "Kwartał 2", value: "kwartal-2" },
-                { text: "Kwartał 3", value: "kwartal-3" },
-                { text: "Kwartał 4", value: "kwartal-4" },
-                {
-                    text: "2 rok",
-                    value: null,
-                    disabled: true,
-                    optgroup: true
-                },
-                { text: "Kwartał 5", value: "kwartal-5" },
-                { text: "Kwartał 6", value: "kwartal-6" },
-                { text: "Kwartał 7", value: "kwartal-7" },
-                { text: "Kwartał 8", value: "kwartal-8" }
-            ]
-        };
-    },
-    computed: {
-        out: function () {
-            var step;
-            for (step = 0; step < this.groupOptions.length-1; step++) {
-                if(this.groupOptions[step].selected == true)
-                    window.location.href = 'http://localhost/optymalizacje/klient/'+this.groupOptions[step].value+'/';
-            }
+            clientQuarters: []
         }
+    },
+    props:{
+        client: '',
+        quarter: ''
+    },
+    created() {
+        this.getQuartes();
+    },
+    methods: {
+        getQuartes() {
+            console.log('Kwartały pobranie');
+            axios.post('/api/getquarters/', {
+                "client": this.client
+            }).then(response => {
+                this.clientQuarters = response.data
+            })
+        },
+        changeQuarte(id) {
+            window.location = window.location.href.substring(0, window.location.href.length - 2)+id+'/';
+        }
+
     }
 };
 </script>

@@ -9,13 +9,31 @@ class Client extends Model
 {
     protected $table = 'clients';
     use HasFactory;
+
     protected $hidden = array('created_at', 'updated_at');
     protected $fillable = [
         'domain', 'ssl', 'www', 'active'
     ];
+
     public function optymizationsQuarters()
     {
         return $this->hasMany(OptymizationsQuarters::class);
+    }
+
+    public function raport()
+    {
+        return $this->hasManyThrough(
+            CheckOptymization::class,
+            ClientsRaports::class,
+            'client_id',
+            'id',
+            'id',
+            'check_id',
+        );
+    }
+    public function clientHasRaport()
+    {
+        return $this->hasMany(ClientsRaports::class, 'client_id', 'id');
     }
     public function optymalizations()
     {

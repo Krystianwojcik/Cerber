@@ -18,7 +18,6 @@ class CreateClientsCheckTable extends Migration
             $table->foreign('client_id')->references('id')->on('clients');
             $table->bigInteger('check_id')->unsigned();
             $table->foreign('check_id')->references('id')->on('check_optymization');
-            $table->timestamps();
         });
     }
 

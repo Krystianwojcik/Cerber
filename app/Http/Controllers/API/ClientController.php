@@ -4,6 +4,8 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Client;
+use App\Models\ClientsRaports;
+use App\Models\OptymizationsQuarters;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
@@ -79,6 +81,16 @@ class ClientController extends Controller
     public function getClientWithQuarter()
     {
         return Client::with('optymizationsQuarters')->get();
+    }
+    public function getClientWithRaport()
+    {
+        $return = Client::with('optymizationAttribute')->get();
+        return $return;
+    }
+
+    public function getQuarters(Request $request)
+    {
+        return OptymizationsQuarters::where('client_id', $request['client'])->get();
     }
 
 

@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Models\CheckOptymization;
+use App\Models\ClientsRaports;
 use App\Models\Optymization;
 use App\Models\Client;
 use Illuminate\Bus\Queueable;
@@ -59,10 +60,14 @@ class GetTitle implements ShouldQueue
             $correct = 0;
         }
 
-        CheckOptymization::create([
+        $CheckOptymization = CheckOptymization::create([
             'optymization_id' => $this->optymization_id,
             'correct' => $correct,
             'value' => $value
+        ]);
+        ClientsRaports::create([
+            'client_id' => $this->client_id,
+            'check_id' => $CheckOptymization->id
         ]);
     }
 }

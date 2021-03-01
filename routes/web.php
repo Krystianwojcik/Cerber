@@ -26,6 +26,11 @@ Route::get('/optymalizacje/', function () {
     return view('optimizations');
 });
 
+Route::get('/raporty/', [App\Http\Controllers\HomeController::class, 'raporty'])->name('raporty');
+Route::get('/raporty/{client}/', [App\Http\Controllers\HomeController::class, 'raport'])->name('raport');
+
+
+
 Route::get('/optymalizacje/get-title/', [App\Http\Controllers\CheckOptymizationController::class, 'getTitle']);
 Route::get('/optymalizacje/get-description/', [App\Http\Controllers\CheckOptymizationController::class, 'getDescription']);
 

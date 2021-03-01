@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Models\CheckOptymization;
 use App\Models\Client;
+use App\Models\ClientsRaports;
 use App\Models\Optymization;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
@@ -61,10 +62,14 @@ class GetDescription implements ShouldQueue
         }
 
 
-        CheckOptymization::create([
+        $CheckOptymization = CheckOptymization::create([
             'optymization_id' => $this->optymization_id,
             'correct' => $correct,
             'value' => $value
+        ]);
+        ClientsRaports::create([
+            'client_id' => $this->client_id,
+            'check_id' => $CheckOptymization->id
         ]);
     }
 }

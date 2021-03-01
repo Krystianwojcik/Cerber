@@ -4,10 +4,15 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Client;
+use App\Repository\ClientRepository;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
+    public function __construct(ClientRepository $clientRepository)
+    {
+        $this->cR = $clientRepository;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -34,6 +39,7 @@ class ClientController extends Controller
             'active' => $request['active']
         ]);
 
+        console.log($addClient);
         if ($addClient) {
             return response()->json(['message' => 'Klient ' . $addClient['domain'] . ' został dodany']);
         } else {
@@ -62,7 +68,8 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->cR->updateClient($request, $id);
+        return response()->json(['message' => 'Klient ' . $addClient['domain'] . ' został edytowany']);
     }
 
     /**

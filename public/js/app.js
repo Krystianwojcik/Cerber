@@ -2200,7 +2200,9 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   props: {
-    edit: false,
+    edit: {
+      "default": false
+    },
     client: {
       "default": function _default() {
         return {
@@ -2213,31 +2215,49 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    console.log(this.client);
     this.domainName = this.client.domain;
     this.domainSSL = this.client.ssl == 1;
     this.domainActive = this.client.active == 1;
     this.domainWWW = this.client.www == 1;
-    console.log(this.domainSSL);
-    console.log(this.domainActive);
   },
   methods: {
     addClient: function addClient() {
       this.trimDomain();
-      axios.post('/api/client', {
-        "name": this.domainShortName,
-        "ssl": this.domainSSL,
-        "www": this.domainWWW,
-        "active": this.domainActive
-      }).then(function (response) {
-        this.domainName = "";
-        this.domainSSL = "";
-        this.domainWWW = "";
-        this.domainActive = "";
-        alert(response.data.message);
-      })["catch"](function (error) {
-        alert(error.data.message);
-      });
+      console.log(this.edit);
+
+      if (!this.edit) {
+        axios.post('/api/client', {
+          "name": this.domainShortName,
+          "ssl": this.domainSSL,
+          "www": this.domainWWW,
+          "active": this.domainActive
+        }).then(function (response) {
+          this.domainName = "";
+          this.domainSSL = "";
+          this.domainWWW = "";
+          this.domainActive = "";
+          alert(response.data.message);
+        })["catch"](function (error) {
+          alert(error.data.message);
+        });
+      } else {
+        axios.put('/api/client/' + this.client.id, {
+          "name": this.domainShortName,
+          "ssl": this.domainSSL,
+          "www": this.domainWWW,
+          "active": this.domainActive
+        }).then(function (response) {
+          this.domainName = "";
+          this.domainSSL = "";
+          this.domainWWW = "";
+          this.domainActive = "";
+          alert(response.data.message);
+        })["catch"](function (error) {
+          alert(error.data.message);
+        });
+      }
+
+      ;
     },
     trimDomain: function trimDomain() {
       if (this.domainSSL) {
@@ -39946,7 +39966,11 @@ var render = function() {
                         attrs: { color: "success", type: "button" },
                         on: { click: _vm.addClient }
                       },
-                      [_vm._v(_vm._s(this.edit) + " Dodaj klienta")]
+                      [
+                        _vm._v(
+                          _vm._s(this.edit ? "Edytuj" : "Dodaj") + " klienta"
+                        )
+                      ]
                     )
                   ],
                   1

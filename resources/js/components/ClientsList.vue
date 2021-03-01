@@ -8,8 +8,8 @@
         </tr>
         </thead>
         <tbody>
-            <template v-for="client in clients">
-                <client-list-single-component :client="client"/>
+            <template v-for="(client,index) in clients">
+                <client-list-single-component :client="client" v-on:delete-row="deleteClient(index)"/>
             </template>
         </tbody>
     </table>
@@ -33,7 +33,10 @@ name: "ClientsList",
                 this.clients = response.data;
                 console.log('Klienci pobrani');
             })
-        }
+        },
+       deleteClient: function(index) {
+          this.clients.splice(index, 1);
+       }
     }
 }
 

@@ -2312,8 +2312,9 @@ __webpack_require__.r(__webpack_exports__);
     client: {}
   },
   methods: {
-    deleteClient: function deleteClient(domain) {
-      alert("Czy na pewno chcesz usunać domenę " + domain + " ?");
+    deleteClient: function deleteClient(index) {
+      // axios.delete('/api/client/'+ index);
+      this.$emit('delete-row');
     }
   },
   computed: {
@@ -2585,6 +2586,9 @@ __webpack_require__.r(__webpack_exports__);
         _this.clients = response.data;
         console.log('Klienci pobrani');
       });
+    },
+    deleteClient: function deleteClient(index) {
+      this.clients.splice(index, 1);
     }
   }
 });
@@ -40048,7 +40052,7 @@ var render = function() {
             attrs: { color: "danger" },
             on: {
               click: function($event) {
-                return _vm.deleteClient(_vm.client.url)
+                return _vm.deleteClient(_vm.client.id)
               }
             }
           },
@@ -40302,9 +40306,16 @@ var render = function() {
     _c(
       "tbody",
       [
-        _vm._l(_vm.clients, function(client) {
+        _vm._l(_vm.clients, function(client, index) {
           return [
-            _c("client-list-single-component", { attrs: { client: client } })
+            _c("client-list-single-component", {
+              attrs: { client: client },
+              on: {
+                "delete-row": function($event) {
+                  return _vm.deleteClient(index)
+                }
+              }
+            })
           ]
         })
       ],

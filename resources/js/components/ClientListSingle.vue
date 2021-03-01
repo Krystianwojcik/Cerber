@@ -6,7 +6,7 @@
             <mdb-btn color="warning" tag="a" class="icon mx-2" v-bind:href="'/klienci/'+ client.id +'/edit/'">
                 <mdb-icon icon="edit"/>
             </mdb-btn>
-            <mdb-btn color="danger" class="icon mx-2" v-on:click="deleteClient(client.url)">
+            <mdb-btn color="danger" class="icon mx-2" v-on:click="deleteClient(client.id)">
                 <mdb-icon icon="trash-alt"/>
             </mdb-btn>
         </td>
@@ -28,8 +28,9 @@ export default {
         client: {}
     },
     methods: {
-        deleteClient: function (domain) {
-            alert("Czy na pewno chcesz usunać domenę " + domain + " ?");
+        deleteClient: function(index) {
+           // axios.delete('/api/client/'+ index);
+           this.$emit('delete-row');
         }
     },
     computed: {
@@ -47,7 +48,7 @@ export default {
                 return 'http';
             }
         }
-    }
+    },
 }
 </script>
 

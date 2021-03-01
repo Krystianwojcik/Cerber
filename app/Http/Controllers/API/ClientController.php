@@ -80,7 +80,8 @@ class ClientController extends Controller
      */
     public function destroy($id)
     {
-        //
+        console.log($id);
+        return $this->cR->deleteClient($id);
     }
 
     public function getClientWithQuarter()

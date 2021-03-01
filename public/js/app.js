@@ -39842,7 +39842,11 @@ var render = function() {
               staticClass:
                 "card-header purple-gradient white-text text-center py-4 h4"
             },
-            [_c("strong", [_vm._v("Dodaj klienta")])]
+            [
+              _c("strong", [
+                _vm._v(_vm._s(this.edit ? "Edytuj" : "Dodaj") + " klienta")
+              ])
+            ]
           ),
           _vm._v(" "),
           _c("div", { staticClass: "card-body px-lg-5 py-0" }, [

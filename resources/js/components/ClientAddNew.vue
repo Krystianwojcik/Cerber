@@ -4,7 +4,7 @@
         <mdb-col col="8">
             <div class="card">
                 <h1 class="card-header purple-gradient white-text text-center py-4 h4">
-                    <strong>Dodaj klienta</strong>
+                    <strong>{{this.edit ? 'Edytuj': 'Dodaj'}} klienta</strong>
                 </h1>
                 <div class="card-body px-lg-5 py-0">
                     <form class="md-form">

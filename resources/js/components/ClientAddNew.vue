@@ -23,7 +23,7 @@
                             </mdb-col>
                         </mdb-row>
                         <mdb-row class="justify-content-md-center mt-4">
-                            <mdb-btn color="success" class="btn" type="button" @click="addClient">Dodaj klienta {{this.domainSSL}}</mdb-btn>
+                            <mdb-btn color="success" class="btn" type="button" @click="addClient">{{this.edit}} Dodaj klienta</mdb-btn>
                         </mdb-row>
                     </form>
                 </div>
@@ -69,13 +69,16 @@ export default {
         },
     },
    props:{
-      client: {}
+       edit: false,
+      client: {default: () => ({domain: '', ssl:0, active:1, www:0})}
    },
    created() {
+      console.log(this.client);
       this.domainName = this.client.domain;
       this.domainSSL = this.client.ssl== 1;
       this.domainActive = this.client.active == 1;
       this.domainWWW = this.client.www == 1;
+
       console.log(this.domainSSL);
       console.log(this.domainActive);
    },

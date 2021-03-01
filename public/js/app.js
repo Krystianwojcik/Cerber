@@ -2200,9 +2200,20 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   props: {
-    client: {}
+    edit: false,
+    client: {
+      "default": function _default() {
+        return {
+          domain: '',
+          ssl: 0,
+          active: 1,
+          www: 0
+        };
+      }
+    }
   },
   created: function created() {
+    console.log(this.client);
     this.domainName = this.client.domain;
     this.domainSSL = this.client.ssl == 1;
     this.domainActive = this.client.active == 1;
@@ -39935,7 +39946,7 @@ var render = function() {
                         attrs: { color: "success", type: "button" },
                         on: { click: _vm.addClient }
                       },
-                      [_vm._v("Dodaj klienta " + _vm._s(this.domainSSL))]
+                      [_vm._v(_vm._s(this.edit) + " Dodaj klienta")]
                     )
                   ],
                   1

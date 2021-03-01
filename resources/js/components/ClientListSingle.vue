@@ -3,7 +3,7 @@
         <td>{{ client.id }}</td>
         <td>{{ hasSSL }}://{{ hasWWW }}{{ client.domain }}</td>
         <td class="text-right py-1 align-middle">
-            <mdb-btn color="warning" tag="a" class="icon mx-2" href="/klienci/nowy/">
+            <mdb-btn color="warning" tag="a" class="icon mx-2" v-bind:href="'/klienci/'+ client.id +'/edit/'">
                 <mdb-icon icon="edit"/>
             </mdb-btn>
             <mdb-btn color="danger" class="icon mx-2" v-on:click="deleteClient(client.url)">

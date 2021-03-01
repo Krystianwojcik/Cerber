@@ -2174,11 +2174,11 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      domainSSL: false,
-      domainWWW: false,
+      domainSSL: '',
+      domainWWW: '',
       domainName: '',
       domainShortName: '',
-      domainActive: true
+      domainActive: ''
     };
   },
   watch: {
@@ -2198,6 +2198,17 @@ __webpack_require__.r(__webpack_exports__);
         this.domainWWW = false;
       }
     }
+  },
+  props: {
+    client: {}
+  },
+  created: function created() {
+    this.domainName = this.client.domain;
+    this.domainSSL = this.client.ssl == 1;
+    this.domainActive = this.client.active == 1;
+    this.domainWWW = this.client.www == 1;
+    console.log(this.domainSSL);
+    console.log(this.domainActive);
   },
   methods: {
     addClient: function addClient() {
@@ -39847,6 +39858,7 @@ var render = function() {
                             type: "checkbox",
                             id: "domain-ssl",
                             name: "domain-ssl",
+                            value: "this.domainSSL",
                             label: "SSL ?"
                           },
                           model: {
@@ -39870,6 +39882,7 @@ var render = function() {
                             type: "checkbox",
                             id: "domain-www",
                             name: "domain-www",
+                            value: "this.domainWWW",
                             label: "WWW ?"
                           },
                           model: {
@@ -39893,6 +39906,7 @@ var render = function() {
                             type: "checkbox",
                             id: "domain-active",
                             name: "domain-active",
+                            value: "this.domainActive",
                             label: "Aktywna ?"
                           },
                           model: {
@@ -39921,7 +39935,7 @@ var render = function() {
                         attrs: { color: "success", type: "button" },
                         on: { click: _vm.addClient }
                       },
-                      [_vm._v("Dodaj klienta")]
+                      [_vm._v("Dodaj klienta " + _vm._s(this.domainSSL))]
                     )
                   ],
                   1
@@ -39978,7 +39992,11 @@ var render = function() {
           "mdb-btn",
           {
             staticClass: "icon mx-2",
-            attrs: { color: "warning", tag: "a", href: "/klienci/nowy/" }
+            attrs: {
+              color: "warning",
+              tag: "a",
+              href: "/klienci/" + _vm.client.id + "/edit/"
+            }
           },
           [_c("mdb-icon", { attrs: { icon: "edit" } })],
           1

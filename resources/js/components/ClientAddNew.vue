@@ -13,17 +13,17 @@
                         </div>
                         <mdb-row class="mb-3">
                             <mdb-col class="form-check" col="4">
-                                <mdb-input type="checkbox" id="domain-ssl" name="domain-ssl" v-model="domainSSL" label="SSL ?" />
+                                <mdb-input type="checkbox" id="domain-ssl" name="domain-ssl" v-model="domainSSL" value="this.domainSSL" label="SSL ?" />
                             </mdb-col>
                             <mdb-col class="form-check" col="4">
-                                <mdb-input type="checkbox" id="domain-www" name="domain-www" v-model="domainWWW" label="WWW ?" />
+                                <mdb-input type="checkbox" id="domain-www" name="domain-www" v-model="domainWWW" value="this.domainWWW" label="WWW ?" />
                             </mdb-col>
                             <mdb-col class="form-check" col="4">
-                                <mdb-input type="checkbox" id="domain-active" name="domain-active" v-model="domainActive" label="Aktywna ?" />
+                                <mdb-input type="checkbox" id="domain-active" name="domain-active"  v-model="domainActive" value="this.domainActive" label="Aktywna ?" />
                             </mdb-col>
                         </mdb-row>
                         <mdb-row class="justify-content-md-center mt-4">
-                            <mdb-btn color="success" class="btn" type="button" @click="addClient">Dodaj klienta</mdb-btn>
+                            <mdb-btn color="success" class="btn" type="button" @click="addClient">Dodaj klienta {{this.domainSSL}}</mdb-btn>
                         </mdb-row>
                     </form>
                 </div>
@@ -45,11 +45,11 @@ export default {
     },
     data() {
         return {
-            domainSSL: false,
-            domainWWW: false,
+            domainSSL: '',
+            domainWWW: '',
             domainName: '',
             domainShortName: '',
-            domainActive: true
+            domainActive: '',
         };
     },
     watch: {
@@ -66,8 +66,20 @@ export default {
             } else {
                 this.domainWWW = false;
             }
-        }
+        },
     },
+   props:{
+      client: {}
+   },
+   created() {
+      this.domainName = this.client.domain;
+      this.domainSSL = this.client.ssl== 1;
+      this.domainActive = this.client.active == 1;
+      this.domainWWW = this.client.www == 1;
+      console.log(this.domainSSL);
+      console.log(this.domainActive);
+   },
+
     methods: {
         addClient: function () {
             this.trimDomain();

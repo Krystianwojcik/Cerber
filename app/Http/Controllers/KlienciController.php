@@ -2,10 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Repository\ClientRepository;
 use Illuminate\Http\Request;
+
 
 class KlienciController extends Controller
 {
+    public function __construct(ClientRepository $clientRepository)
+    {
+        $this->cR = $clientRepository;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -56,7 +62,8 @@ class KlienciController extends Controller
      */
     public function edit($id)
     {
-        //
+
+        return view('klienciAdd', ['client' => $this->cR->getClient($id)]);
     }
 
     /**

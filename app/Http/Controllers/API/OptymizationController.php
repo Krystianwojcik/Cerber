@@ -122,10 +122,17 @@ class OptymizationController extends Controller
     public function destroy($id)
     {
         $checkOptymalization = CheckOptymization::where('optymization_id', $id)->first();
-        $ClientsRaports = ClientsRaports::where('check_id', $checkOptymalization->id)->first();
-        if($ClientsRaports) {
-            $ClientsRaports->delete();
+        if($checkOptymalization) {
+            $checkOptymalization->delete();
         }
+        if($checkOptymalization) {
+            $ClientsRaports = ClientsRaports::where('check_id', $checkOptymalization->id)->first();
+
+            if($ClientsRaports) {
+                $ClientsRaports->delete();
+            }
+        }
+
         $ClientsOptymization = ClientsOptymization::where('optymization_id', $id)->first();
         if($ClientsOptymization) {
             $ClientsOptymization->delete();
@@ -133,7 +140,9 @@ class OptymizationController extends Controller
         $Optymization = Optymization::where('id', $id)->first();
         if($Optymization) {
             $Optymization->delete();
+
         }
+
 
         if ($Optymization) {
             return response()->json(['message' => 'Optymalizacja usunięta']);

@@ -40,7 +40,15 @@ class ClientController extends Controller
             'active' => $request['active']
         ]);
 
+
+
         if ($addClient) {
+            OptymizationsQuarters::create([
+                'client_id' => $addClient->id,
+                'quarter' => 1,
+                'start_Quarter' => '2021-04-01',
+                'end_Quarter' => '2021-06-30'
+            ]);
             return response()->json(['message' => 'Klient ' . $request['name'] . ' został dodany']);
         } else {
             return error()->json(['message' => 'Klient nie został dodany']);

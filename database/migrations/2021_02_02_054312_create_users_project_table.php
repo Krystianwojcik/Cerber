@@ -14,6 +14,7 @@ class CreateUsersProjectTable extends Migration
     public function up()
     {
         Schema::create('users_project', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->bigInteger('client_id')->unsigned();

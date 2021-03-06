@@ -9,9 +9,13 @@
                 <div class="card-body px-lg-5 py-0">
 
                     <form class="md-form">
+
+                        <template v-if="!optymization">
                         <div class="col-sm-12">
                             <mdb-select v-model="domain" placeholder="Wybierz domenę" label="" />
                         </div>
+
+                        </template>
                         <div class="col-sm-12">
                             <mdb-input type="text" v-model="short_url" label="Adres strony WWW" icon="globe" small="Podaj katalog który ma być sprawdzany"
                                        outline/>
@@ -25,7 +29,7 @@
                                        outline/>
                         </div>
                         <mdb-row class="justify-content-md-center mt-4">
-                            <mdb-btn color="success" class="btn" type="button" @click="addOptymization">Dodaj dane</mdb-btn>
+                            <mdb-btn color="success" class="btn" type="button" @click="addOptymization">{{button}}</mdb-btn>
                         </mdb-row>
                     </form>
                 </div>
@@ -61,7 +65,8 @@ export default {
             short_url: '',
             value: '',
             attribute_value: '',
-            domain_value: ''
+            domain_value: '',
+            button: 'Dodaj optymalizacje'
         };
     },
     watch: {
@@ -84,21 +89,45 @@ export default {
             if(this.domain_value.length > 0) {
                 this.domain_value = this.domain_value[0].value;
             }
-            console.log(this.domain_value);
+        }
+    },
+    props: {
+        optymization: '',
+    },
+    created() {
+        console.log(this.optymization);
+        if(this.optymization) {
+            this.short_url = this.optymization.short_url;
+            this.value = this.optymization.value;
+            this.attribute[this.optymization.attribute_id-1].selected = true;
+            this.button = 'Aktualizuj optymalizacje'
         }
     },
     methods: {
         addOptymization: function () {
-            axios.post('/api/optymization', {
-                "domain": this.domain_value,
-                "short_url": this.short_url,
-                "attribute_id": this.attribute_value,
-                "value": this.value
-            }).then(function (response) {
-                alert(response.data.message);
-            }).catch(function (error) {
-                alert(error.data.message);
-            });
+            if(this.optymization) {
+                axios.put('/api/optymization/'+this.optymization.id, {
+                    "domain": this.domain_value,
+                    "short_url": this.short_url,
+                    "attribute_id": this.attribute_value,
+                    "value": this.value
+                }).then(function (response) {
+                    alert(response.data.message);
+                }).catch(function (error) {
+                    alert(error.data.message);
+                });
+            } else {
+                axios.post('/api/optymization', {
+                    "domain": this.domain_value,
+                    "short_url": this.short_url,
+                    "attribute_id": this.attribute_value,
+                    "value": this.value
+                }).then(function (response) {
+                    alert(response.data.message);
+                }).catch(function (error) {
+                    alert(error.data.message);
+                });
+            }
         }
     }
 };

@@ -12,4 +12,5 @@ class ClientsOptymization extends Model
     protected $fillable = [
         'client_id', 'optymization_id'
     ];
+    public $timestamps = false;
 }

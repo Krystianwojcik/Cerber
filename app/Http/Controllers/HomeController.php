@@ -46,8 +46,12 @@ class HomeController extends Controller
 
     public function addOptimization()
     {
-//        dd($client);
         return view('optimizationKlientAdd');
+    }
+    public function editOptimization($id)
+    {
+        $optymization = Optymization::where('id', $id)->first();
+        return view('optimizationKlientAdd', ['optymization' => $optymization]);
     }
 
     public function raporty()

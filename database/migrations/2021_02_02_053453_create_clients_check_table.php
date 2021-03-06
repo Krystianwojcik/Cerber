@@ -14,6 +14,7 @@ class CreateClientsCheckTable extends Migration
     public function up()
     {
         Schema::create('clients_check', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->bigInteger('client_id')->unsigned();
             $table->foreign('client_id')->references('id')->on('clients');
             $table->bigInteger('check_id')->unsigned();

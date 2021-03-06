@@ -14,6 +14,7 @@ class CreateClientsOptymizationsTable extends Migration
     public function up()
     {
         Schema::create('clients_optymizations', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->bigInteger('client_id')->unsigned();
             $table->foreign('client_id')->references('id')->on('clients');
             $table->bigInteger('optymization_id')->unsigned();

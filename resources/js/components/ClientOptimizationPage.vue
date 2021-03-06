@@ -10,12 +10,23 @@
         </tr>
         </thead>
         <tbody>
-        <tr  v-for="optymization in optymizations">
+        <tr  v-for="(optymization, index) in optymizations">
+        <template v-bind:class="[hidden ?   'd-none': '']">
             <th scope="row">{{optymization.id}}</th>
             <td>https://roseness.pl/</td>
             <td>{{optymization.short_url}}</td>
             <td>{{optymization.optymization_attribute.attribute}}</td>
             <td>{{optymization.value}}</td>
+            <td class="text-right py-1 align-middle">
+                <mdb-btn color="warning" tag="a" class="icon mx-2" v-bind:href="'/optymalizacje/edytuj/'+ optymization.id">
+                    <mdb-icon icon="edit"/>
+                </mdb-btn>
+                <mdb-btn color="danger" class="icon mx-2" v-on:click="deleteClient(optymization.id, index)">
+                    <mdb-icon icon="trash-alt"/>
+                </mdb-btn>
+            </td>
+
+        </template>
         </tr>
 
         </tbody>
@@ -24,11 +35,17 @@
 </template>
 
 <script>
+import {mdbBtn, mdbIcon} from "mdbvue";
+
 export default {
     name: "ClientsList",
+    components: {
+        mdbIcon,
+        mdbBtn
+    },
     data() {
         return {
-            optymizations: [],
+            optymizations: []
         }
     },
     props:{
@@ -46,11 +63,32 @@ export default {
                 this.optymizations = response.data;
                 console.log('Optymalizacje pobrane');
             })
+        },
+
+        deleteClient: function (id, index) {
+            axios.delete('/api/optymization/'+id, {
+            }).then(response => {
+                this.optymizations[index].hidden = true;
+                alert(response.data.message);
+                window.location.reload(true);
+            }).catch(error => {
+                alert("Wystąpił błąd podczas usuwanai klienta, spróbój później");
+            });
         }
     }
 }
 </script>
 
 <style scoped>
+.icon {
+    height: 30px;
+    width: 30px;
+    padding: 0;
+    line-height: 30px;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
 
 </style>

@@ -43,6 +43,8 @@ Route::get('/get-h1/', [App\Http\Controllers\CheckOptymizationController::class,
 Route::get('/optymalizacje/{client}/kwartal-{quarter}', [App\Http\Controllers\HomeController::class, 'optimization'])->name('optimization');
 
 Route::get('/optymalizacje/klient/nowy/', [App\Http\Controllers\HomeController::class, 'addOptimization'])->name('addOptimization');
+Route::get('/optymalizacje/edytuj/{id}', [App\Http\Controllers\HomeController::class, 'editOptimization'])->name('editOptimization');
+
 
 Route::get('/clear-cache', function () {
     Artisan::call('cache:clear');

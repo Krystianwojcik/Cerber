@@ -1,12 +1,12 @@
 <template>
-    <tr>
+    <tr v-bind:class="[show ?   '': 'd-none']">
         <td>{{ client.id }}</td>
         <td>{{ hasSSL }}://{{ hasWWW }}{{ client.domain }}</td>
         <td class="text-right py-1 align-middle">
-            <mdb-btn color="warning" tag="a" class="icon mx-2" href="/klienci/nowy/">
+            <mdb-btn color="warning" tag="a" class="icon mx-2" v-bind:href="'/klienci/edytuj/'+ client.id">
                 <mdb-icon icon="edit"/>
             </mdb-btn>
-            <mdb-btn color="danger" class="icon mx-2" v-on:click="deleteClient(client.url)">
+            <mdb-btn color="danger" class="icon mx-2" v-on:click="deleteClient(client.domain)">
                 <mdb-icon icon="trash-alt"/>
             </mdb-btn>
         </td>
@@ -24,12 +24,24 @@ export default {
         mdbBtn
 
     },
+    data() {
+        return {
+            show: true
+        };
+    },
     props: {
         client: {}
     },
     methods: {
         deleteClient: function (domain) {
-            alert("Czy na pewno chcesz usunać domenę " + domain + " ?");
+            axios.put('/api/hidden-user/'+this.client.id, {
+            }).then(response => {
+                this.show = false;
+                alert(response.data.message);
+            }).catch(error => {
+                alert("Wystąpił błąd podczas usuwanai klienta, spróbój później");
+            });
+
         }
     },
     computed: {
@@ -58,6 +70,9 @@ export default {
     padding: 0;
     line-height: 30px;
     border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
 }
 
 </style>

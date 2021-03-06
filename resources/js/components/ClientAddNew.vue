@@ -1,4 +1,3 @@
-
 <template>
     <mdb-row class="justify-content-md-center">
         <mdb-col col="8">
@@ -9,21 +8,25 @@
                 <div class="card-body px-lg-5 py-0">
                     <form class="md-form">
                         <div class="col-sm-12">
-                            <mdb-input type="text" id="domain-name" name="domain-name"  label="Domena klienta" icon="globe" small="Podaj domenę klienta" v-model="domainName" outline />
+                            <mdb-input type="text" id="domain-name" name="domain-name" label="Domena klienta"
+                                       icon="globe" small="Podaj domenę klienta" v-model="domainName" outline/>
                         </div>
                         <mdb-row class="mb-3">
                             <mdb-col class="form-check" col="4">
-                                <mdb-input type="checkbox" id="domain-ssl" name="domain-ssl" v-model="domainSSL" label="SSL ?" />
+                                <mdb-input type="checkbox" id="domain-ssl" name="domain-ssl" v-model="domainSSL"
+                                           label="SSL ?"/>
                             </mdb-col>
                             <mdb-col class="form-check" col="4">
-                                <mdb-input type="checkbox" id="domain-www" name="domain-www" v-model="domainWWW" label="WWW ?" />
+                                <mdb-input type="checkbox" id="domain-www" name="domain-www" v-model="domainWWW"
+                                           label="WWW ?"/>
                             </mdb-col>
                             <mdb-col class="form-check" col="4">
-                                <mdb-input type="checkbox" id="domain-active" name="domain-active" v-model="domainActive" label="Aktywna ?" />
+                                <mdb-input type="checkbox" id="domain-active" name="domain-active"
+                                           v-model="domainActive" label="Aktywna ?"/>
                             </mdb-col>
                         </mdb-row>
                         <mdb-row class="justify-content-md-center mt-4">
-                            <mdb-btn color="success" class="btn" type="button" @click="addClient">Dodaj klienta</mdb-btn>
+                            <mdb-btn color="success" class="btn" type="button" @click="addClient">{{button}}</mdb-btn>
                         </mdb-row>
                     </form>
                 </div>
@@ -48,54 +51,73 @@ export default {
             domainSSL: false,
             domainWWW: false,
             domainName: '',
-            domainShortName: '',
-            domainActive: true
+            domainActive: true,
+            url: '/api/client',
+            button: 'Dodaj klienta'
         };
     },
-    watch: {
-        domainName: function() {
-            const ssl = 'https';
-            const www = 'www.';
-            if(this.domainName.includes(ssl)) {
+    props: {
+        client: '',
+    },
+    created() {
+        if (this.client) {
+            this.domainName = this.client.domain;
+            if(this.client.ssl == 1) {
                 this.domainSSL = true;
             } else {
                 this.domainSSL = false;
             }
-            if(this.domainName.includes(www)) {
+            if(this.client.www == 1) {
                 this.domainWWW = true;
             } else {
                 this.domainWWW = false;
             }
+            if(this.client.active == 1) {
+                this.domainActive = true;
+            } else {
+                this.domainActive = false;
+            }
+            this.button = 'Edytuj klienta';
+            this.url = '/api/client/'+this.client.id;
         }
     },
     methods: {
         addClient: function () {
-            this.trimDomain();
-            axios.post('/api/client', {
-                "name": this.domainShortName,
-                "ssl": this.domainSSL,
-                "www": this.domainWWW,
-                "active": this.domainActive
-            }).then(function (response) {
-                this.domainName = "";
-                this.domainSSL = "";
-                this.domainWWW = "";
-                this.domainActive = "";
-                alert(response.data.message);
-            }).catch(function (error) {
-                alert(error.data.message);
-            });
-        },
-        trimDomain: function () {
-            if(this.domainSSL) {
-                this.domainShortName = this.domainName.replace('https://', '');
+            if(this.url == "/api/client") {
+                axios.post(this.url, {
+                    "domain": this.domainName,
+                    "ssl": this.domainSSL,
+                    "www": this.domainWWW,
+                    "active": this.domainActive
+                }).then(response => {
+                    this.domainName = '';
+                    this.domainSSL = false;
+                    this.domainWWW = false;
+                    this.domainActive = true;
+                    alert(response.data.message);
+                }).catch(error => {
+                    alert("Wystąpił błąd podczas dodawania klienta. Sprawdź, czy uzupełniłeś wszystkie pola.");
+                });
             } else {
-                this.domainShortName = this.domainName.replace('http://', '');
-            }
-            if(this.domainWWW) {
-                this.domainShortName = this.domainName.replace('www.', '');
-            }
+                axios.put(this.url, {
+                    "domain": this.domainName,
+                    "ssl": this.domainSSL,
+                    "www": this.domainWWW,
+                    "active": this.domainActive
+                }).then(response => {
+                    this.domainName = '';
+                    this.domainSSL = false;
+                    this.domainWWW = false;
+                    this.domainActive = true;
+                    alert(response.data.message);
+                    window.location.replace("/klienci/");
+                }).catch(error => {
+                    alert("Wystąpił błąd podczas dodawania klienta. Sprawdź, czy uzupełniłeś wszystkie pola.");
+                });
+            };
+
         }
+
     }
 };
 </script>

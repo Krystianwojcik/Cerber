@@ -3,9 +3,13 @@
 @section('title', 'Dodaj Klienta | Cerber')
 
 @section('content')
-    {{$client}}
-    {{$quarter}}
-    <client-form  :client="{{$client}}  :quarter="{{$quarter}}></client-form>
+    <template>
+        @if($client ?? false)
+            <client-form :client="{{$client}}"></client-form>
+        @else
+            <client-form></client-form>
+        @endif
+    </template>
 @endsection
 
 

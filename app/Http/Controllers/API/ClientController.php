@@ -19,6 +19,10 @@ class ClientController extends Controller
     {
         return Client::all();
     }
+    public function getActiveClient()
+    {
+        return Client::where('active', true)->get();
+    }
 
 
     /**
@@ -30,14 +34,14 @@ class ClientController extends Controller
     public function store(Request $request)
     {
         $addClient = Client::create([
-            'domain' => $request['name'],
+            'domain' => $request['domain'],
             'ssl' => $request['ssl'],
             'www' => $request['www'],
             'active' => $request['active']
         ]);
 
         if ($addClient) {
-            return response()->json(['message' => 'Klient ' . $addClient['domain'] . ' został dodany']);
+            return response()->json(['message' => 'Klient ' . $request['name'] . ' został dodany']);
         } else {
             return error()->json(['message' => 'Klient nie został dodany']);
         }
@@ -64,7 +68,31 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $client = Client::find($id);
+
+        $client->domain = $request['domain'];
+        if($request['ssl']) {
+            $client->ssl = true;
+        } else {
+            $client->ssl = false;
+        }
+        if($request['www']) {
+            $client->www = true;
+        } else {
+            $client->www = false;
+        }
+        if($request['active']) {
+            $client->active = true;
+        } else {
+            $client->active = false;
+        }
+
+        $update = $client->save();
+        if ($update) {
+            return response()->json(['message' => 'Klient ' . $request['name'] . ' został zaktualizowany']);
+        } else {
+            return error()->json(['message' => 'Klient nie został zmieniony']);
+        }
     }
 
     /**
@@ -75,13 +103,33 @@ class ClientController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $client = Client::find($id);
+        $delete = $client->delete();
+        if ($delete) {
+            return response()->json(['message' => 'Klient ' . $client['domain'] . ' został usunięty']);
+        } else {
+            return error()->json(['message' => 'wystąpił błąd, spróbój później']);
+        }
+    }
+
+    public function hiddenUser($id)
+    {
+        $client = Client::find($id);
+        $client->active = false;
+        $update = $client->save();
+
+        if ($update) {
+            return response()->json(['message' => 'Klient ' . $client['domain'] . ' został wyłączony']);
+        } else {
+            return error()->json(['message' => 'wystąpił błąd, spróbój później']);
+        }
     }
 
     public function getClientWithQuarter()
     {
         return Client::with('optymizationsQuarters')->get();
     }
+
     public function getClientWithRaport()
     {
         $return = Client::with('optymizationAttribute')->get();
@@ -92,6 +140,4 @@ class ClientController extends Controller
     {
         return OptymizationsQuarters::where('client_id', $request['client'])->get();
     }
-
-
 }

@@ -22,6 +22,10 @@ Route::get('getclientwithquarter', [ClientController::class, 'getClientWithQuart
 Route::get('getoptymizations', [OptymizationController::class, 'getOptymizations'])->name('getOptymizations');
 Route::post('add-optymization-to-order', [App\Http\Controllers\CheckOptymizationController::class, 'addOptymizationToOrder'])->name('addOptymizationToOrder');
 Route::get('getclientwithraport', [ClientController::class, 'getClientWithRaport'])->name('getClientWithRaport');
+Route::put('hidden-user/{id}', [ClientController::class, 'hiddenUser'])->name('hiddenUser');
+Route::get('get-active-client', [ClientController::class, 'getActiveClient'])->name('getActiveClient');
+
+
 
 /*Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

@@ -2202,6 +2202,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "InputsPage",
@@ -2216,56 +2219,78 @@ __webpack_require__.r(__webpack_exports__);
       domainSSL: false,
       domainWWW: false,
       domainName: '',
-      domainShortName: '',
-      domainActive: true
+      domainActive: true,
+      url: '/api/client',
+      button: 'Dodaj klienta'
     };
   },
-  watch: {
-    domainName: function domainName() {
-      var ssl = 'https';
-      var www = 'www.';
+  props: {
+    client: ''
+  },
+  created: function created() {
+    if (this.client) {
+      this.domainName = this.client.domain;
 
-      if (this.domainName.includes(ssl)) {
+      if (this.client.ssl == 1) {
         this.domainSSL = true;
       } else {
         this.domainSSL = false;
       }
 
-      if (this.domainName.includes(www)) {
+      if (this.client.www == 1) {
         this.domainWWW = true;
       } else {
         this.domainWWW = false;
       }
+
+      if (this.client.active == 1) {
+        this.domainActive = true;
+      } else {
+        this.domainActive = false;
+      }
+
+      this.button = 'Edytuj klienta';
+      this.url = '/api/client/' + this.client.id;
     }
   },
   methods: {
     addClient: function addClient() {
-      this.trimDomain();
-      axios.post('/api/client', {
-        "name": this.domainShortName,
-        "ssl": this.domainSSL,
-        "www": this.domainWWW,
-        "active": this.domainActive
-      }).then(function (response) {
-        this.domainName = "";
-        this.domainSSL = "";
-        this.domainWWW = "";
-        this.domainActive = "";
-        alert(response.data.message);
-      })["catch"](function (error) {
-        alert(error.data.message);
-      });
-    },
-    trimDomain: function trimDomain() {
-      if (this.domainSSL) {
-        this.domainShortName = this.domainName.replace('https://', '');
+      var _this = this;
+
+      if (this.url == "/api/client") {
+        axios.post(this.url, {
+          "domain": this.domainName,
+          "ssl": this.domainSSL,
+          "www": this.domainWWW,
+          "active": this.domainActive
+        }).then(function (response) {
+          _this.domainName = '';
+          _this.domainSSL = false;
+          _this.domainWWW = false;
+          _this.domainActive = true;
+          alert(response.data.message);
+        })["catch"](function (error) {
+          alert("Wystąpił błąd podczas dodawania klienta. Sprawdź, czy uzupełniłeś wszystkie pola.");
+        });
       } else {
-        this.domainShortName = this.domainName.replace('http://', '');
+        axios.put(this.url, {
+          "domain": this.domainName,
+          "ssl": this.domainSSL,
+          "www": this.domainWWW,
+          "active": this.domainActive
+        }).then(function (response) {
+          _this.domainName = '';
+          _this.domainSSL = false;
+          _this.domainWWW = false;
+          _this.domainActive = true;
+          alert(response.data.message);
+          window.location.replace("/klienci/");
+        })["catch"](function (error) {
+          alert("Wystąpił błąd podczas dodawania klienta. Sprawdź, czy uzupełniłeś wszystkie pola.");
+        });
       }
 
-      if (this.domainWWW) {
-        this.domainShortName = this.domainName.replace('www.', '');
-      }
+      ;
     }
   }
 });
@@ -2305,12 +2330,24 @@ __webpack_require__.r(__webpack_exports__);
     mdbIcon: mdbvue__WEBPACK_IMPORTED_MODULE_0__["mdbIcon"],
     mdbBtn: mdbvue__WEBPACK_IMPORTED_MODULE_0__["mdbBtn"]
   },
+  data: function data() {
+    return {
+      show: true
+    };
+  },
   props: {
     client: {}
   },
   methods: {
     deleteClient: function deleteClient(domain) {
-      alert("Czy na pewno chcesz usunać domenę " + domain + " ?");
+      var _this = this;
+
+      axios.put('/api/hidden-user/' + this.client.id, {}).then(function (response) {
+        _this.show = false;
+        alert(response.data.message);
+      })["catch"](function (error) {
+        alert("Wystąpił błąd podczas usuwanai klienta, spróbój później");
+      });
     }
   },
   computed: {
@@ -2622,7 +2659,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       console.log('Pobieranie Klientów');
-      axios.get('/api/client/').then(function (response) {
+      axios.get('/api/get-active-client/').then(function (response) {
         _this.clients = response.data;
         console.log('Klienci pobrani');
       });
@@ -7661,7 +7698,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n.icon[data-v-2aca529c] {\n    height: 30px;\n    width: 30px;\n    padding: 0;\n    line-height: 30px;\n    border-radius: 50%;\n}\n\n", ""]);
+exports.push([module.i, "\n.icon[data-v-2aca529c] {\n    height: 30px;\n    width: 30px;\n    padding: 0;\n    line-height: 30px;\n    border-radius: 50%;\n    display: inline-flex;\n    justify-content: center;\n    align-items: center;\n}\n\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -40151,7 +40188,7 @@ var render = function() {
                         attrs: { color: "success", type: "button" },
                         on: { click: _vm.addClient }
                       },
-                      [_vm._v("Dodaj klienta")]
+                      [_vm._v(_vm._s(_vm.button))]
                     )
                   ],
                   1
@@ -40188,7 +40225,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("tr", [
+  return _c("tr", { class: [_vm.show ? "" : "d-none"] }, [
     _c("td", [_vm._v(_vm._s(_vm.client.id))]),
     _vm._v(" "),
     _c("td", [
@@ -40208,7 +40245,11 @@ var render = function() {
           "mdb-btn",
           {
             staticClass: "icon mx-2",
-            attrs: { color: "warning", tag: "a", href: "/klienci/nowy/" }
+            attrs: {
+              color: "warning",
+              tag: "a",
+              href: "/klienci/edytuj/" + _vm.client.id
+            }
           },
           [_c("mdb-icon", { attrs: { icon: "edit" } })],
           1
@@ -40221,7 +40262,7 @@ var render = function() {
             attrs: { color: "danger" },
             on: {
               click: function($event) {
-                return _vm.deleteClient(_vm.client.url)
+                return _vm.deleteClient(_vm.client.domain)
               }
             }
           },

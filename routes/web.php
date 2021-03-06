@@ -19,9 +19,10 @@ Route::get('/', function () {
 Route::get('/klienci/', function () {
     return view('klienci');
 });
-Route::get('/klienci/nowy/', function () {
-    return view('klienciAdd');
-});
+Route::get('/klienci/nowy/', [App\Http\Controllers\HomeController::class, 'addClient'])->name('addClient');
+Route::get('/klienci/edytuj/{id}', [App\Http\Controllers\HomeController::class, 'editClient'])->name('editClient');
+
+
 Route::get('/optymalizacje/', function () {
     return view('optimizations');
 });

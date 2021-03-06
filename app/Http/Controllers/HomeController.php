@@ -36,12 +36,14 @@ class HomeController extends Controller
         echo $this->R->test();
         //return view('home');
     }
+
     public function optimization($client, $quarter)
     {
         $clientID = Client::where('domain', $client)->first();
         $return = OptymizationsQuarters::where('client_id', $clientID->id)->where('quarter', $quarter)->first();
         return view('optimizationKlient', ['quarter' => $return->id], ['client' => $clientID->id]);
     }
+
     public function addOptimization()
     {
 //        dd($client);
@@ -53,6 +55,7 @@ class HomeController extends Controller
         $clients = Client::with('clientHasRaport')->get();
         return view('raports', ['clients' => $clients]);
     }
+
     public function raport($client)
     {
         $clientID = Client::where('domain', $client)->first();
@@ -60,6 +63,16 @@ class HomeController extends Controller
         return view('raport', ['raport' => $raport]);
     }
 
+    public function addClient()
+    {
+        return view('klienciAdd');
+    }
+
+    public function editClient($id)
+    {
+        $client = Client::where('id', $id)->first();
+        return view('klienciAdd', ['client' => $client]);
+    }
 
 
 }

@@ -41,7 +41,7 @@ class HomeController extends Controller
     {
         $clientID = Client::where('domain', $client)->first();
         $return = OptymizationsQuarters::where('client_id', $clientID->id)->where('quarter', $quarter)->first();
-        return view('optimizationKlient', ['quarter' => $return->id], ['client' => $clientID->id]);
+        return view('optimizationKlient', ['quarter' => $return->id], ['client' => $clientID]);
     }
 
     public function addOptimization()

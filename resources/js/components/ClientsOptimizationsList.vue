@@ -28,11 +28,8 @@ export default {
     },
     methods: {
         getClients() {
-            console.log('Pobieranie Klientów');
             axios.get('/api/getclientwithquarter').then(response => {
                 this.clients = response.data;
-                console.log('Klienci pobrani');
-                console.log(this.clients);
             })
         }
     }

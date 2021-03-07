@@ -13,7 +13,7 @@
         <tr  v-for="(optymization, index) in optymizations">
         <template v-bind:class="[hidden ?   'd-none': '']">
             <th scope="row">{{optymization.id}}</th>
-            <td>https://roseness.pl/</td>
+            <td>{{hasSSL}}://{{hasWWW}}{{client.domain}}</td>
             <td>{{optymization.short_url}}</td>
             <td>{{optymization.optymization_attribute.attribute}}</td>
             <td>{{optymization.value}}</td>
@@ -49,7 +49,8 @@ export default {
         }
     },
     props:{
-        quarter: ''
+        quarter: '',
+        client:''
     },
     created() {
         this.getClients();
@@ -74,6 +75,22 @@ export default {
             }).catch(error => {
                 alert("Wystąpił błąd podczas usuwanai klienta, spróbój później");
             });
+        }
+    },
+    computed: {
+        hasWWW: function () {
+            if (this.client.www) {
+                return 'www.';
+            } else {
+                return '';
+            }
+        },
+        hasSSL: function () {
+            if (this.client.ssl) {
+                return 'https';
+            } else {
+                return 'http';
+            }
         }
     }
 }

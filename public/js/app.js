@@ -2491,7 +2491,8 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   props: {
-    quarter: ''
+    quarter: '',
+    client: ''
   },
   created: function created() {
     this.getClients();
@@ -2517,6 +2518,22 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         alert("Wystąpił błąd podczas usuwanai klienta, spróbój później");
       });
+    }
+  },
+  computed: {
+    hasWWW: function hasWWW() {
+      if (this.client.www) {
+        return 'www.';
+      } else {
+        return '';
+      }
+    },
+    hasSSL: function hasSSL() {
+      if (this.client.ssl) {
+        return 'https';
+      } else {
+        return 'http';
+      }
     }
   }
 });
@@ -2690,7 +2707,6 @@ __webpack_require__.r(__webpack_exports__);
       console.log('Pobieranie Klientów');
       axios.get('/api/get-active-client/').then(function (response) {
         _this.clients = response.data;
-        console.log('Klienci pobrani');
       });
     }
   }
@@ -2738,11 +2754,8 @@ __webpack_require__.r(__webpack_exports__);
     getClients: function getClients() {
       var _this = this;
 
-      console.log('Pobieranie Klientów');
       axios.get('/api/getclientwithquarter').then(function (response) {
         _this.clients = response.data;
-        console.log('Klienci pobrani');
-        console.log(_this.clients);
       });
     }
   }
@@ -2917,13 +2930,10 @@ __webpack_require__.r(__webpack_exports__);
         text: "Przekierowanie 301",
         value: "4"
       }],
-      domain: [{
-        text: "afterweb.pl",
-        value: "1"
-      }, {
-        text: "roseness.pl",
-        value: "2"
-      }],
+      domain: [
+        /*       { text: "afterweb.pl", value: "1" },
+               { text: "roseness.pl", value: "2" }*/
+      ],
       short_url: '',
       value: '',
       attribute_value: '',
@@ -2959,13 +2969,13 @@ __webpack_require__.r(__webpack_exports__);
     optymization: ''
   },
   created: function created() {
-    console.log(this.optymization);
-
     if (this.optymization) {
       this.short_url = this.optymization.short_url;
       this.value = this.optymization.value;
       this.attribute[this.optymization.attribute_id - 1].selected = true;
       this.button = 'Aktualizuj optymalizacje';
+    } else {
+      this.getClients();
     }
   },
   methods: {
@@ -2993,6 +3003,19 @@ __webpack_require__.r(__webpack_exports__);
           alert(error.data.message);
         });
       }
+    },
+    getClients: function getClients() {
+      var _this = this;
+
+      console.log('Pobieranei domen');
+      axios.get('/api/get-active-client/').then(function (response) {
+        for (var i = 0; i < response.data.length; i++) {
+          _this.domain[i] = {
+            text: response.data[i].domain,
+            value: response.data[i].id
+          };
+        }
+      });
     }
   }
 });
@@ -40467,7 +40490,14 @@ var render = function() {
                 _vm._v(_vm._s(optymization.id))
               ]),
               _vm._v(" "),
-              _c("td", [_vm._v("https://roseness.pl/")]),
+              _c("td", [
+                _vm._v(
+                  _vm._s(_vm.hasSSL) +
+                    "://" +
+                    _vm._s(_vm.hasWWW) +
+                    _vm._s(_vm.client.domain)
+                )
+              ]),
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(optymization.short_url))]),
               _vm._v(" "),

@@ -59,8 +59,8 @@ export default {
                 { text: "Przekierowanie 301", value: "4" }
             ],
             domain: [
-                { text: "afterweb.pl", value: "1" },
-                { text: "roseness.pl", value: "2" }
+         /*       { text: "afterweb.pl", value: "1" },
+                { text: "roseness.pl", value: "2" }*/
             ],
             short_url: '',
             value: '',
@@ -95,12 +95,13 @@ export default {
         optymization: '',
     },
     created() {
-        console.log(this.optymization);
         if(this.optymization) {
             this.short_url = this.optymization.short_url;
             this.value = this.optymization.value;
             this.attribute[this.optymization.attribute_id-1].selected = true;
             this.button = 'Aktualizuj optymalizacje'
+        } else {
+            this.getClients()
         }
     },
     methods: {
@@ -128,6 +129,15 @@ export default {
                     alert(error.data.message);
                 });
             }
+        },
+        getClients: function () {
+            console.log('Pobieranei domen');
+            axios.get('/api/get-active-client/').then(response => {
+                for (var i = 0; i < response.data.length; i++) {
+                    this.domain[i] = {text: response.data[i].domain, value: response.data[i].id};
+                }
+
+            })
         }
     }
 };

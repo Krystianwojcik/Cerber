@@ -63,7 +63,7 @@ class HomeController extends Controller
     public function raport($client)
     {
         $clientID = Client::where('domain', $client)->first();
-        $raport = ClientsRaports::where('client_id', $clientID->id)->first()->with('raport')->with('raportInfo')->get();
+        $raport = ClientsRaports::where('client_id', $clientID->id)->first()->with('raport')->with('raportInfo')->where('client_id', $clientID->id)->get();
         return view('raport', ['raport' => $raport]);
     }
 

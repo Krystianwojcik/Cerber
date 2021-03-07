@@ -38,6 +38,7 @@ class GetTitle implements ShouldQueue
     public function handle()
     {
         $client = Client::where('id', $this->client_id)->first();
+
         $optymization = Optymization::where('id', $this->optymization_id)->first();
         $url = '';
         if($client->ssl) {
@@ -59,7 +60,6 @@ class GetTitle implements ShouldQueue
         } else {
             $correct = 0;
         }
-
         $CheckOptymization = CheckOptymization::create([
             'optymization_id' => $this->optymization_id,
             'correct' => $correct,

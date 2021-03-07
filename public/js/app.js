@@ -2108,12 +2108,54 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "OptimizationCheckButton",
   components: {
     mdbBtn: mdbvue__WEBPACK_IMPORTED_MODULE_0__["mdbBtn"],
-    mdbIcon: mdbvue__WEBPACK_IMPORTED_MODULE_0__["mdbIcon"]
+    mdbIcon: mdbvue__WEBPACK_IMPORTED_MODULE_0__["mdbIcon"],
+    mdbModal: mdbvue__WEBPACK_IMPORTED_MODULE_0__["mdbModal"],
+    mdbModalHeader: mdbvue__WEBPACK_IMPORTED_MODULE_0__["mdbModalHeader"],
+    mdbModalTitle: mdbvue__WEBPACK_IMPORTED_MODULE_0__["mdbModalTitle"],
+    mdbModalBody: mdbvue__WEBPACK_IMPORTED_MODULE_0__["mdbModalBody"],
+    mdbModalFooter: mdbvue__WEBPACK_IMPORTED_MODULE_0__["mdbModalFooter"],
+    mdbSelect: mdbvue__WEBPACK_IMPORTED_MODULE_0__["mdbSelect"]
+  },
+  data: function data() {
+    return {
+      modal: false,
+      basicOptions: [{
+        text: "Teraz",
+        value: "now"
+      }, {
+        text: "Codzienie",
+        value: "day"
+      }, {
+        text: "Raz na tydzień",
+        value: "week"
+      }]
+    };
   },
   props: {
     quarter: ''
@@ -2124,6 +2166,7 @@ __webpack_require__.r(__webpack_exports__);
         "quarter": this.quarter
       }).then(function (response) {
         alert(response.data.message);
+        this.modal = false;
       })["catch"](function (error) {
         alert(error.data.message);
       });
@@ -40118,14 +40161,96 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "mdb-btn",
-    {
-      attrs: { type: "button", color: "primary" },
-      on: { click: _vm.addOptymizationToOrder }
-    },
+    "div",
+    { staticClass: "d-inline" },
     [
-      _vm._v("Sprawdź optymalizację "),
-      _c("mdb-icon", { staticClass: "ml-2", attrs: { icon: "check-circle" } })
+      _c(
+        "mdb-btn",
+        {
+          attrs: { type: "button", color: "primary" },
+          nativeOn: {
+            click: function($event) {
+              _vm.modal = true
+            }
+          }
+        },
+        [
+          _vm._v("Sprawdź optymalizację\n        "),
+          _c("mdb-icon", {
+            staticClass: "ml-2",
+            attrs: { icon: "check-circle" }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "mdb-modal",
+        {
+          attrs: { show: _vm.modal },
+          on: {
+            close: function($event) {
+              _vm.modal = false
+            }
+          }
+        },
+        [
+          _c(
+            "mdb-modal-header",
+            [_c("mdb-modal-title", [_vm._v("Sprawdź optymalizację")])],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "mdb-modal-body",
+            [
+              _c("mdb-select", {
+                attrs: {
+                  placeholder: "Wybierz częstotliwość sprawdzania",
+                  label: ""
+                },
+                model: {
+                  value: _vm.basicOptions,
+                  callback: function($$v) {
+                    _vm.basicOptions = $$v
+                  },
+                  expression: "basicOptions"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "mdb-modal-footer",
+            [
+              _c(
+                "mdb-btn",
+                {
+                  attrs: { color: "warning" },
+                  nativeOn: {
+                    click: function($event) {
+                      _vm.modal = false
+                    }
+                  }
+                },
+                [_vm._v("Cofnij")]
+              ),
+              _vm._v(" "),
+              _c(
+                "mdb-btn",
+                {
+                  attrs: { color: "primary" },
+                  on: { click: _vm.addOptymizationToOrder }
+                },
+                [_vm._v("Dodaj do kolejki")]
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
     ],
     1
   )

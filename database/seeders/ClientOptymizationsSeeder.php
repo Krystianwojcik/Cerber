@@ -15,19 +15,19 @@ class ClientOptymizationsSeeder extends Seeder
     public function run()
     {
         DB::table('clients_check')->insert([
-            'client_id' => 1,
+            'client_id' => 2,
             'check_id' => 1
         ]);
         DB::table('clients_check')->insert([
-            'client_id' => 1,
+            'client_id' => 2,
             'check_id' => 2
         ]);
         DB::table('clients_check')->insert([
-            'client_id' => 1,
+            'client_id' => 2,
             'check_id' => 3
         ]);
         DB::table('clients_check')->insert([
-            'client_id' => 1,
+            'client_id' => 2,
             'check_id' => 4
         ]);
     }

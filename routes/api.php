@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\ClientController;
 use App\Http\Controllers\API\OptymizationController;
+use App\Http\Controllers\API\StaffController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,7 @@ use App\Http\Controllers\API\OptymizationController;
 */
 Route::apiResource('client', ClientController::class);
 Route::apiResource('optymization', OptymizationController::class);
+Route::apiResource('staff', StaffController::class);
 Route::post('getquarters', [ClientController::class, 'getQuarters'])->name('getQuarters');
 Route::get('getclientwithquarter', [ClientController::class, 'getClientWithQuarter'])->name('getClientWithQuarter');
 Route::get('getoptymizations', [OptymizationController::class, 'getOptymizations'])->name('getOptymizations');

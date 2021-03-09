@@ -8,6 +8,7 @@ use App\Models\ClientsRaports;
 use App\Models\Optymization;
 use App\Models\OptymizationsQuarters;
 use App\Models\CheckOptymization;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class OptymizationController extends Controller
@@ -19,7 +20,7 @@ class OptymizationController extends Controller
      */
     public function index()
     {
-        //
+        return User::all();
     }
 
     /**

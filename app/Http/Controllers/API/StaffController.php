@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\UserRole;
 use Illuminate\Http\Request;
 
 class StaffController extends Controller
@@ -49,7 +50,7 @@ class StaffController extends Controller
      */
     public function show($id)
     {
-        $client = User::find($id);
+        $client = User::where('id', $id)->with('UserRole')->first();
         return $client;
     }
 
@@ -105,7 +106,7 @@ class StaffController extends Controller
         if ($UserDelete) {
             return response()->json(['message' => 'Użytkownik został usunięty']);
         } else {
-            return response()->json(['message' => 'wystąpił błąd, spróbój później']);
+            return response()->json(['message' => 'Wystąpił błąd, spróbój później']);
         }
     }
 }

@@ -39,6 +39,11 @@ Vue.component('clients-raports-list-component', require('./components/ClientsRap
 Vue.component('client-report-component', require('./components/ClientRaportSingle.vue').default);
 Vue.component('raport-component', require('./components/Raport.vue').default);
 
+Vue.component('users-list-component', require('./components/Users.vue').default);
+Vue.component('user-component', require('./components/User.vue').default);
+Vue.component('user-add-button-component', require('./components/UserAddNewButton.vue').default);
+Vue.component('user-form', require('./components/UserAddForm.vue').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

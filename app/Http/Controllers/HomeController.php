@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Client;
 use App\Models\ClientsRaports;
 use App\Models\Optymization;
@@ -44,16 +45,11 @@ class HomeController extends Controller
         return view('optimizationKlient', ['quarter' => $return->id], ['client' => $clientID]);
     }
 
-    public function addOptimization()
-    {
-        return view('optimizationKlientAdd');
-    }
     public function editOptimization($id)
     {
         $optymization = Optymization::where('id', $id)->first();
         return view('optimizationKlientAdd', ['optymization' => $optymization]);
     }
-
     public function raporty()
     {
         $clients = Client::with('clientHasRaport')->get();
@@ -77,6 +73,21 @@ class HomeController extends Controller
         $client = Client::where('id', $id)->first();
         return view('klienciAdd', ['client' => $client]);
     }
+
+    public function addOptimization()
+    {
+        return view('optimizationKlientAdd');
+    }
+    public function addUser()
+    {
+        return view('UserAdd');
+    }
+    public function editUser($id)
+    {
+        $user = User::find($id);
+        return view('UserAdd', ['user' => $user]);
+    }
+
 
 
 }

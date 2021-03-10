@@ -46,6 +46,13 @@ Route::get('/optymalizacje/klient/nowy/', [App\Http\Controllers\HomeController::
 Route::get('/optymalizacje/edytuj/{id}', [App\Http\Controllers\HomeController::class, 'editOptimization'])->name('editOptimization');
 
 
+Route::get('/uzytkownicy/', function () {
+    return view('users');
+});
+
+Route::get('/uzytkownicy/nowy/', [App\Http\Controllers\HomeController::class, 'addUser'])->name('addUser');
+Route::get('/uzytkownicy/edytuj/{id}', [App\Http\Controllers\HomeController::class, 'editUser'])->name('editUser');
+
 Route::get('/clear-cache', function () {
     Artisan::call('cache:clear');
     Artisan::call('route:clear');

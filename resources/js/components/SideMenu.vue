@@ -21,12 +21,11 @@
                     </ul>
                 </li>
                 <mdb-nav-item tag="li" icon="file-alt" href="/raporty/" >Raporty</mdb-nav-item>
-                <mdb-nav-item tag="li" icon="ellipsis-h" href="#" >Kolejki</mdb-nav-item>
                 <li class="parent" :class="{ active: isPracownicy }">
                     <mdb-nav-item tag="a" icon="users-cog" @click="clickParent('isPracownicy')">Pracownicy <mdb-icon class="icon" icon="angle-down" /></mdb-nav-item>
                     <ul v-show="isPracownicy" class="sub-menu pl-3">
                         <mdb-nav-item tag="li" icon="plus" href="#" >Dodaj pracownika</mdb-nav-item>
-                        <mdb-nav-item tag="li" icon="laptop" href="#" >Wszyscy pracownicy</mdb-nav-item>
+                        <mdb-nav-item tag="li" icon="laptop" href="/uzytkownicy/" >Wszyscy pracownicy</mdb-nav-item>
                     </ul>
                 </li>
             </mdb-navbar-nav>

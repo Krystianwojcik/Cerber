@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\UserRole;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class StaffController extends Controller
 {
@@ -32,7 +33,7 @@ class StaffController extends Controller
             'name' => $request['name'],
             'surname' => $request['surname'],
             'email' => $request['email'],
-            'password' => $request['password'],
+            'password' => Hash::make($request['password']),
             'role_id' => $request['role_id']
         ]);
         if($adduser) {
@@ -74,7 +75,7 @@ class StaffController extends Controller
             $User->email = $request['email'];
         }
         if($request['password']) {
-            $User->password = $request['password'];
+            $User->password = Hash::make($request['password']);
         }
         if($request['role_id']) {
             $User->role_id = $request['role_id'];

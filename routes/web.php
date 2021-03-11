@@ -52,6 +52,7 @@ Route::get('/uzytkownicy/', function () {
 
 Route::get('/uzytkownicy/nowy/', [App\Http\Controllers\HomeController::class, 'addUser'])->name('addUser');
 Route::get('/uzytkownicy/edytuj/{id}', [App\Http\Controllers\HomeController::class, 'editUser'])->name('editUser');
+Route::get('/uzytkownicy/klienci/{id}', [App\Http\Controllers\HomeController::class, 'userClient'])->name('userClient');
 
 Route::get('/clear-cache', function () {
     Artisan::call('cache:clear');

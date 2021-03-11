@@ -42,7 +42,9 @@ Vue.component('raport-component', require('./components/Raport.vue').default);
 Vue.component('users-list-component', require('./components/Users.vue').default);
 Vue.component('user-component', require('./components/User.vue').default);
 Vue.component('user-add-button-component', require('./components/UserAddNewButton.vue').default);
-Vue.component('user-form', require('./components/UserAddForm.vue').default);
+Vue.component('user-form', require('./components/UserAddForm.vue').default)
+
+Vue.component('user-client', require('./components/User-Client.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

@@ -39,4 +39,8 @@ class Client extends Model
     {
         return $this->hasMany(Optymization::class);
     }
+    public function staff()
+    {
+        return $this->hasMany(UserClient::class, 'client_id', 'id');
+    }
 }

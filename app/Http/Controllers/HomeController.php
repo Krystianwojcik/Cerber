@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\UserClient;
 use App\Models\User;
 use App\Models\Client;
 use App\Models\ClientsRaports;
@@ -86,6 +87,12 @@ class HomeController extends Controller
     {
         $user = User::find($id);
         return view('UserAdd', ['user' => $user]);
+    }
+
+    public function userClient($id)
+    {
+        $client = Client::with('staff')->get();
+        return view('userClient', ['client' => $client, 'userid' => $id]);
     }
 
 

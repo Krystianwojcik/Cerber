@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\UserClient;
 use App\Models\UserRole;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -108,6 +109,31 @@ class StaffController extends Controller
             return response()->json(['message' => 'Użytkownik został usunięty']);
         } else {
             return response()->json(['message' => 'Wystąpił błąd, spróbój później']);
+        }
+    }
+    public function addToClient(Request $request) {
+
+        $adduserclient = UserClient::create([
+            'user_id' => $request['user_id'],
+            'client_id' => $request['client_id']
+        ]);
+        if ($adduserclient) {
+            return response()->json(['message' => true]);
+        } else {
+            return response()->json(['message' => false]);
+        }
+    }
+    public function removeToClient(Request $request) {
+
+        $removeuserclient = false;
+        $removeuserclient = UserClient::where('client_id', $request['client_id'])->first();
+        if($removeuserclient) {
+            $removeuserclient = $removeuserclient->delete();
+        }
+        if ($removeuserclient) {
+            return response()->json(['message' => true]);
+        } else {
+            return response()->json(['message' => false]);
         }
     }
 }

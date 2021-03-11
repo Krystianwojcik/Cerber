@@ -4,6 +4,9 @@
         <td>{{ user.name }}</td>
         <td>{{ user.surname }}</td>
         <td class="text-right py-1 align-middle">
+            <mdb-btn color="info" tag="a" class="icon mx-2" v-bind:href="'/uzytkownicy/klienci/'+ user.id">
+                <mdb-icon icon="briefcase"/>
+            </mdb-btn>
             <mdb-btn color="warning" tag="a" class="icon mx-2" v-bind:href="'/uzytkownicy/edytuj/'+ user.id">
                 <mdb-icon icon="edit"/>
             </mdb-btn>

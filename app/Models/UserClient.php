@@ -12,4 +12,8 @@ class UserClient extends Model
     protected $fillable = [
         'user_id', 'client_id'
     ];
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
 }

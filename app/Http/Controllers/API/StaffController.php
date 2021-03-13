@@ -118,7 +118,7 @@ class StaffController extends Controller
             'client_id' => $request['client_id']
         ]);
         if ($adduserclient) {
-            return response()->json(['message' => true]);
+            return response()->json(['message' => 'Klient przydzielony']);
         } else {
             return response()->json(['message' => false]);
         }
@@ -126,12 +126,12 @@ class StaffController extends Controller
     public function removeToClient(Request $request) {
 
         $removeuserclient = false;
-        $removeuserclient = UserClient::where('client_id', $request['client_id'])->first();
+        $removeuserclient = UserClient::where('client_id', $request['client_id'])->where('user_id', $request['user_id'])->first();
         if($removeuserclient) {
             $removeuserclient = $removeuserclient->delete();
         }
         if ($removeuserclient) {
-            return response()->json(['message' => true]);
+            return response()->json(['message' => 'Dostęp odebrany']);
         } else {
             return response()->json(['message' => false]);
         }

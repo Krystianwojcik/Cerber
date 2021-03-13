@@ -28,7 +28,7 @@ Route::put('hidden-user/{id}', [ClientController::class, 'hiddenUser'])->name('h
 Route::get('get-active-client', [ClientController::class, 'getActiveClient'])->name('getActiveClient');
 
 Route::post('add-to-client', [StaffController::class, 'addToClient'])->name('addToClient');
-Route::delete('remove-to-client', [StaffController::class, 'removeToClient'])->name('removeToClient');
+Route::post('remove-to-client', [StaffController::class, 'removeToClient'])->name('removeToClient');
 
 
 

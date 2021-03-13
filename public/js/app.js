@@ -3230,6 +3230,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var mdbvue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! mdbvue */ "./node_modules/mdbvue/lib/index.js");
+/* harmony import */ var mdbvue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(mdbvue__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -3259,15 +3261,46 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "UserClients",
+  components: {
+    mdbBtn: mdbvue__WEBPACK_IMPORTED_MODULE_0__["mdbBtn"]
+  },
   props: {
     clients: {},
     userid: ''
   },
-  created: function created() {
-    console.log(this.clients);
-    console.log(this.userid);
+  data: function data() {
+    return {
+      count: 0
+    };
+  },
+  methods: {
+    addUserToProcjet: function addUserToProcjet(clientID) {
+      axios.post('/api/add-to-client', {
+        "user_id": this.userid,
+        "client_id": clientID
+      }).then(function (response) {
+        alert(response.data.message);
+        window.location.reload(true);
+      })["catch"](function (error) {
+        alert(error.data.message);
+      });
+    },
+    removeUserToProcjet: function removeUserToProcjet(clientID) {
+      axios.post('/api/remove-to-client', {
+        "user_id": this.userid,
+        "client_id": clientID
+      }).then(function (response) {
+        alert(response.data.message);
+        window.location.reload(true);
+      })["catch"](function (error) {
+        alert(error.data.message);
+      });
+    }
   }
 });
 
@@ -42014,12 +42047,38 @@ var render = function() {
                 [
                   client.staff.length > 0
                     ? [
-                        _vm._l(client.staff, function(staff) {
+                        _vm._l(client.staff, function(staff, index) {
                           return [
                             staff.user_id == _vm.userid
                               ? [
-                                  _vm._v(
-                                    "\n                                Usuń\n                            "
+                                  _c(
+                                    "mdb-btn",
+                                    {
+                                      attrs: { size: "sm", color: "danger" },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.removeUserToProcjet(
+                                            client.id
+                                          )
+                                        }
+                                      }
+                                    },
+                                    [_vm._v("Usuń")]
+                                  )
+                                ]
+                              : index == client.staff.length - 1
+                              ? [
+                                  _c(
+                                    "mdb-btn",
+                                    {
+                                      attrs: { size: "sm", color: "success" },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.addUserToProcjet(client.id)
+                                        }
+                                      }
+                                    },
+                                    [_vm._v("Dodaj")]
                                   )
                                 ]
                               : _vm._e()
@@ -42027,8 +42086,17 @@ var render = function() {
                         })
                       ]
                     : [
-                        _vm._v(
-                          "\n                        Dodaj\n                    "
+                        _c(
+                          "mdb-btn",
+                          {
+                            attrs: { size: "sm", color: "success" },
+                            on: {
+                              click: function($event) {
+                                return _vm.addUserToProcjet(client.id)
+                              }
+                            }
+                          },
+                          [_vm._v("Dodaj")]
                         )
                       ]
                 ],

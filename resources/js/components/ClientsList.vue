@@ -30,6 +30,7 @@ name: "ClientsList",
         getClients() {
             console.log('Pobieranie Klientów');
             axios.get('/api/get-active-client/').then(response => {
+                console.log(response.data);
                 this.clients = response.data;
             })
         }

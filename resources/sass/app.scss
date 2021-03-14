@@ -6,3 +6,20 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+.login-block {
+    position: fixed;
+    right: 80px;
+    top: 0px;
+    width: 140px;
+    display: flex;
+    flex-direction: row;
+    .nav-item {
+        a {
+            padding: 5px 10px;
+        }
+    }
+    .dropdown-menu.dropdown-menu-right.show {
+        transform: translate3d(-20px, 00px, 0px)!important;
+    }
+}

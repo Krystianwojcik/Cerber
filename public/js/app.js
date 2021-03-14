@@ -2749,6 +2749,7 @@ __webpack_require__.r(__webpack_exports__);
 
       console.log('Pobieranie Klientów');
       axios.get('/api/get-active-client/').then(function (response) {
+        console.log(response.data);
         _this.clients = response.data;
       });
     }
@@ -41471,7 +41472,117 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c(
+    "div",
+    [
+      _c(
+        "mdb-navbar",
+        {
+          attrs: {
+            slot: "nav",
+            tag: "div",
+            toggler: false,
+            position: "top",
+            dark: "",
+            color: "unique-color-dark"
+          },
+          slot: "nav"
+        },
+        [
+          _c(
+            "mdb-navbar-nav",
+            { staticClass: "nav-flex-icons", attrs: { right: "" } },
+            [
+              _c(
+                "mdb-nav-item",
+                {
+                  attrs: {
+                    tag: "li",
+                    href: "/navigation/pro/double-navigation-v1",
+                    "waves-fixed": "",
+                    icon: "code-branch"
+                  }
+                },
+                [_c("span", { staticClass: "ml-1" }, [_vm._v("v.1")])]
+              ),
+              _vm._v(" "),
+              _c(
+                "mdb-nav-item",
+                {
+                  attrs: {
+                    tag: "li",
+                    href: "/navigation/pro/double-navigation-v2",
+                    "waves-fixed": "",
+                    icon: "eye"
+                  }
+                },
+                [_c("span", { staticClass: "ml-1" }, [_vm._v("v.2")])]
+              ),
+              _vm._v(" "),
+              _c(
+                "mdb-nav-item",
+                {
+                  attrs: {
+                    tag: "li",
+                    href: "/navigation/pro/double-navigation-v3",
+                    "waves-fixed": "",
+                    icon: "file-code",
+                    far: ""
+                  }
+                },
+                [_c("span", { staticClass: "ml-1" }, [_vm._v("v.3")])]
+              ),
+              _vm._v(" "),
+              _c(
+                "mdb-nav-item",
+                {
+                  attrs: {
+                    tag: "li",
+                    href: "/navigation/pro/double-navigation-v4",
+                    "waves-fixed": "",
+                    icon: "terminal"
+                  }
+                },
+                [_c("span", { staticClass: "ml-1" }, [_vm._v("v.4")])]
+              ),
+              _vm._v(" "),
+              _c(
+                "mdb-nav-item",
+                {
+                  attrs: {
+                    tag: "li",
+                    active: "",
+                    href: "/navigation/pro/double-navigation-v5",
+                    "waves-fixed": "",
+                    icon: "smile",
+                    far: ""
+                  }
+                },
+                [_c("span", { staticClass: "ml-1" }, [_vm._v("v.5")])]
+              ),
+              _vm._v(" "),
+              _c(
+                "mdb-nav-item",
+                {
+                  attrs: {
+                    tag: "li",
+                    href: "/navigation/pro/double-navigation-v6",
+                    "waves-fixed": "",
+                    icon: "user",
+                    far: ""
+                  }
+                },
+                [_c("span", { staticClass: "ml-1" }, [_vm._v("v.6")])]
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

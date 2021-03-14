@@ -22,7 +22,6 @@ class HomeController extends Controller
      */
     public function __construct(Repository $Repository, Gateway $Gateway)
     {
-        $this->middleware('auth');
         $this->R = $Repository;
         $this->G = $Gateway;
     }

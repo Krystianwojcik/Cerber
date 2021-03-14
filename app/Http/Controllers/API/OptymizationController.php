@@ -122,18 +122,28 @@ class OptymizationController extends Controller
      */
     public function destroy($id)
     {
-        $checkOptymalization = CheckOptymization::where('optymization_id', $id)->first();
-        if($checkOptymalization) {
-            $checkOptymalization->delete();
-        }
-        if($checkOptymalization) {
-            $ClientsRaports = ClientsRaports::where('check_id', $checkOptymalization->id)->first();
+        $checkOptymalizations = CheckOptymization::where('optymization_id', $id)->get();
 
-            if($ClientsRaports) {
-                $ClientsRaports->delete();
+        if($checkOptymalizations) {
+            foreach ($checkOptymalizations as $checkOptymalization) {
+                $clientsRaports = ClientsRaports:: where('check_id', $checkOptymalization->id)->get();
+                foreach ($clientsRaports as $clientsRaport) {
+                    $clientsRaport->delete();
+                }
+                $checkOptymalization->delete();
             }
         }
+        if($checkOptymalizations) {
+            foreach ($checkOptymalizations as $checkOptymalization) {
+                $ClientsRaports = ClientsRaports::where('check_id', $checkOptymalization->id)->get();
 
+                if($ClientsRaports) {
+                    foreach ($ClientsRaports as $ClientsRaport) {
+                        $ClientsRaport->delete();
+                    }
+                }
+            }
+        }
         $ClientsOptymization = ClientsOptymization::where('optymization_id', $id)->first();
         if($ClientsOptymization) {
             $ClientsOptymization->delete();

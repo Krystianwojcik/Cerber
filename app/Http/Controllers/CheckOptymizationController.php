@@ -14,10 +14,7 @@ class CheckOptymizationController extends Controller
     public function index()
     {
 
-
-        $url = "https://roseness.pl/exploding-box/";
-
-        echo 'Title: ' . getTitle($url);
+    }
 
     public function addOptymizationToOrder(Request $request)
     {

@@ -77,9 +77,10 @@ export default {
 
 
 <style scoped>
-.sidebar {
-    min-width: 300px;
+#navbarSupportedContent.hide-navbar > .navbar-nav {
+    display: none;
 }
+
 .fixed-top {
     right: auto;
 }

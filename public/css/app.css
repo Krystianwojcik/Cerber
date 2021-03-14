@@ -10961,3 +10961,18 @@ a.text-dark:focus {
   transform: translate3d(-20px, 0px, 0px) !important;
 }
 
+@media screen and (max-width: 1200px) {
+  #app {
+    display: none;
+  }
+
+  .mobile-info {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-size: 2rem;
+    text-align: center;
+  }
+}
+

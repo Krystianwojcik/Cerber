@@ -8284,7 +8284,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n.sidebar[data-v-6c575dc1] {\n    min-width: 300px;\n}\n.fixed-top[data-v-6c575dc1] {\n    right: auto;\n}\n.sub-menu[data-v-6c575dc1] {\n    display: none;\n}\n.parent.active .sub-menu[data-v-6c575dc1] {\n    display: block;\n}\n.parent.active i.icon[data-v-6c575dc1] {\n    transform: rotate(180deg);\n}\n", ""]);
+exports.push([module.i, "\n#navbarSupportedContent.hide-navbar > .navbar-nav[data-v-6c575dc1] {\n    display: none;\n}\n.fixed-top[data-v-6c575dc1] {\n    right: auto;\n}\n.sub-menu[data-v-6c575dc1] {\n    display: none;\n}\n.parent.active .sub-menu[data-v-6c575dc1] {\n    display: block;\n}\n.parent.active i.icon[data-v-6c575dc1] {\n    transform: rotate(180deg);\n}\n", ""]);
 // Exports
 module.exports = exports;
 

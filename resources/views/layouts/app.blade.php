@@ -16,6 +16,7 @@
     </style>
 </head>
 <body class="antialiased">
+<div class="d-none mobile-info">Ze względów bezpieczeństwa skorzystaj ze komputera firmowego</div>
 <div id="app">
     <!-- Right Side Of Navbar -->
     <ul class="login-block navbar-nav">

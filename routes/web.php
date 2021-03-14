@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use app\Http\Middleware\Authenticate;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,19 +14,19 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
-Route::get('/klienci/', function () {
-    return view('klienci');
-});
+Auth::routes();
+
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
+
+Route::get('/klienci/', [App\Http\Controllers\HomeController::class, 'klienci'])->name('klienci');
+
+
 Route::get('/klienci/nowy/', [App\Http\Controllers\HomeController::class, 'addClient'])->name('addClient');
 Route::get('/klienci/edytuj/{id}', [App\Http\Controllers\HomeController::class, 'editClient'])->name('editClient');
 
 
-Route::get('/optymalizacje/', function () {
-    return view('optimizations');
-});
+Route::get('/optymalizacje/', [App\Http\Controllers\HomeController::class, 'optymalizacje'])->name('optymalizacje');
+
 
 Route::get('/raporty/', [App\Http\Controllers\HomeController::class, 'raporty'])->name('raporty');
 Route::get('/raporty/{client}/', [App\Http\Controllers\HomeController::class, 'raport'])->name('raport');
@@ -45,10 +46,8 @@ Route::get('/optymalizacje/{client}/kwartal-{quarter}', [App\Http\Controllers\Ho
 Route::get('/optymalizacje/klient/nowy/', [App\Http\Controllers\HomeController::class, 'addOptimization'])->name('addOptimization');
 Route::get('/optymalizacje/edytuj/{id}', [App\Http\Controllers\HomeController::class, 'editOptimization'])->name('editOptimization');
 
+Route::get('/uzytkownicy/', [App\Http\Controllers\HomeController::class, 'uzytkownicy'])->name('uzytkownicy');
 
-Route::get('/uzytkownicy/', function () {
-    return view('users');
-});
 
 Route::get('/uzytkownicy/nowy/', [App\Http\Controllers\HomeController::class, 'addUser'])->name('addUser');
 Route::get('/uzytkownicy/edytuj/{id}', [App\Http\Controllers\HomeController::class, 'editUser'])->name('editUser');
@@ -62,6 +61,3 @@ Route::get('/clear-cache', function () {
     return "Cache is cleared";
 });
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'getClientWithQuarter'])->name('home');

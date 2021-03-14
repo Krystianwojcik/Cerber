@@ -34,9 +34,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        echo $this->G->test();
-        echo $this->R->test();
-        //return view('home');
+        return view('home');
     }
 
     public function optimization($client, $quarter)
@@ -93,6 +91,23 @@ class HomeController extends Controller
     {
         $client = Client::with('staff')->get();
         return view('userClient', ['client' => $client, 'userid' => $id]);
+    }
+
+
+    public function klienci()
+    {
+        return view('klienci');
+    }
+
+    public function optymalizacje()
+    {
+        return view('optimizations');
+    }
+
+
+    public function uzytkownicy()
+    {
+        return view('users');
     }
 
 

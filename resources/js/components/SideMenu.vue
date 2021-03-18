@@ -16,7 +16,7 @@
                 <li class="parent" :class="{ active: isOptymalizacja }">
                     <mdb-nav-item tag="li" icon="cog" @click="clickParent('isOptymalizacja')">Optymalizacja <mdb-icon class="icon" icon="angle-down" /></mdb-nav-item>
                     <ul v-show="isOptymalizacja" class="sub-menu pl-3">
-                        <mdb-nav-item tag="li" icon="plus" href="#" >Dodaj optymalizację</mdb-nav-item>
+                        <mdb-nav-item tag="li" icon="plus" href="/optymalizacje/klient/nowy/" >Dodaj optymalizację</mdb-nav-item>
                         <mdb-nav-item tag="li" icon="cog" href="/optymalizacje/" >Wszystkie Optymalizacje</mdb-nav-item>
                     </ul>
                 </li>
@@ -24,7 +24,7 @@
                 <li class="parent" :class="{ active: isPracownicy }">
                     <mdb-nav-item tag="a" icon="users-cog" @click="clickParent('isPracownicy')">Pracownicy <mdb-icon class="icon" icon="angle-down" /></mdb-nav-item>
                     <ul v-show="isPracownicy" class="sub-menu pl-3">
-                        <mdb-nav-item tag="li" icon="plus" href="#" >Dodaj pracownika</mdb-nav-item>
+                        <mdb-nav-item tag="li" icon="plus" href="/uzytkownicy/nowy/" >Dodaj pracownika</mdb-nav-item>
                         <mdb-nav-item tag="li" icon="laptop" href="/uzytkownicy/" >Wszyscy pracownicy</mdb-nav-item>
                     </ul>
                 </li>

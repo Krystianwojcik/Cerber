@@ -78,12 +78,12 @@ class HomeController extends Controller
     }
     public function addUser()
     {
-        return view('UserAdd');
+        return view('serAdd');
     }
     public function editUser($id)
     {
         $user = User::find($id);
-        return view('UserAdd', ['user' => $user]);
+        return view('serAdd', ['user' => $user]);
     }
 
     public function userClient($id)
